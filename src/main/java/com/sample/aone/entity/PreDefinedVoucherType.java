@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "voucher_type_master")
-public class VoucherTypeMaster {
+@Table(name = "predefined_voucher_type")
+public class PreDefinedVoucherType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,11 +52,4 @@ public class VoucherTypeMaster {
 
     @Column(name = "suffix_details_particulars")
     private String suffixDetailsParticulars;
-
-    @Column(name = "voucher_date")
-    private String voucherDate;
-
-    @Column(name = "voucher_number")
-    private String voucherNumber;
-
 }

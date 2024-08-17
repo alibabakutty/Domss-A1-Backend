@@ -1,6 +1,5 @@
 package com.sample.aone.dto;
 
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class VoucherTypeMasterDto {
+public class PreDefinedVoucherTypeDto {
 
     private Long id;
 
@@ -35,9 +34,5 @@ public class VoucherTypeMasterDto {
     private String suffixDetailsApplicationForm;
 
     private String suffixDetailsParticulars;
-
-    private String voucherDate;
-
-    private String voucherNumber;
 
 }
