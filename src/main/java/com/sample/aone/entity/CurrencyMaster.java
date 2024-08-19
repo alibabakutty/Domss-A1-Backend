@@ -33,26 +33,26 @@ public class CurrencyMaster {
     private String currencySymbol;
 
     @Column(name = "rate_for_per_sales_currency")
-    private Long rateForPerSalesCurrency;
+    private Double rateForPerSalesCurrency;
 
     @Column(name = "rate_for_sales_invoice")
-    private Long rateForSalesInvoice;
+    private Double rateForSalesInvoice;
 
     @Column(name = "rate_for_per_purchase_currency")
-    private Long rateForPerPurchaseCurrency;
+    private Double rateForPerPurchaseCurrency;
 
     @Column(name = "rate_for_purchase_invoice")
-    private Long rateForPurchaseInvoice;
+    private Double rateForPurchaseInvoice;
 
     @Column(name = "rate_for_per_payment_currency")
-    private Long rateForPerPaymentCurrency;
+    private Double rateForPerPaymentCurrency;
 
     @Column(name = "rate_for_payment_invoice")
-    private Long rateForPaymentInvoice;
+    private Double rateForPaymentInvoice;
 
     @Column(name = "rate_for_per_receipt_currency")
-    private Long rateForPerReceiptCurrency;
+    private Double rateForPerReceiptCurrency;
 
     @Column(name = "rate_for_receipt_invoice")
-    private Long rateForReceiptInvoice;
+    private Double rateForReceiptInvoice;
 }
