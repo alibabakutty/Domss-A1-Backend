@@ -34,7 +34,7 @@ public class DepartmentMasterServiceImpl implements DepartmentMasterService {
         DepartmentMaster departmentMaster = DepartmentMasterMapper.mapToDepartmentMaster(departmentMasterDto);
         DepartmentMaster saveDepartmentMaster = departmentMasterDAO.save(departmentMaster);
         return DepartmentMasterMapper.mapToDepartmentMasterDto(saveDepartmentMaster);
-    };
+    }
 
     private void validateDepartmentMaster(DepartmentMasterDto departmentMasterDto){
         if (departmentMasterDto.getDepartmentName() == null || departmentMasterDto.getDepartmentName().isEmpty()){
