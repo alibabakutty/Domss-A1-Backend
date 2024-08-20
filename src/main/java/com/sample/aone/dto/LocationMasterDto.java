@@ -1,6 +1,5 @@
 package com.sample.aone.dto;
 
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,9 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DepartmentMasterDto {
+public class LocationMasterDto {
 
     private Long id;
 
-    private String departmentName;
+    private String godownName;
 }

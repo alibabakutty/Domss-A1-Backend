@@ -12,6 +12,7 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -56,11 +57,24 @@ public class DepartmentMasterServiceImpl implements DepartmentMasterService {
         List<DepartmentMaster> departmentMaster = departmentMasterDAO.findAll();
         return departmentMaster.stream().map(DepartmentMasterMapper::mapToDepartmentMasterDto).toList();
     }
+
     @Override
-    public void deleteByDepartmentMaster(Long id){
-        DepartmentMaster departmentMaster = departmentMasterDAO.findById(id).orElseThrow(()->
+    public DepartmentMasterDto updateDepartmentMaster(String departmentName, DepartmentMasterDto updatedDepartmentMaster){
+        DepartmentMaster departmentMaster = departmentMasterDAO.findByDepartmentName(departmentName).orElseThrow(()->
+
+                new ResourceNotFoundException("Department name is not found with this name:" + departmentName));
+        departmentMaster.setDepartmentName(updatedDepartmentMaster.getDepartmentName());
+
+        DepartmentMaster departmentMasterObj = departmentMasterDAO.save(departmentMaster);
+
+        return DepartmentMasterMapper.mapToDepartmentMasterDto(departmentMasterObj);
+    }
+    @Override
+    public void deleteByDepartmentMaster(Long id) {
+        DepartmentMaster departmentMaster = departmentMasterDAO.findById(id).orElseThrow(() ->
 
                 new ResourceNotFoundException("Department name is not found with this name:" + id));
         departmentMasterDAO.deleteById(id);
     }
+
 }
