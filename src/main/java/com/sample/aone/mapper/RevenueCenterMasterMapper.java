@@ -8,14 +8,16 @@ public class RevenueCenterMasterMapper {
     public static RevenueCenterMasterDto mapToRevenueCenterMasterDto(RevenueCenterMaster revenueCenterMaster){
         return new RevenueCenterMasterDto(
                 revenueCenterMaster.getId(),
-                revenueCenterMaster.getRevenueCenterName()
+                revenueCenterMaster.getRevenueCenterName(),
+                revenueCenterMaster.getRevenueCategoryName()
         );
     }
 
     public static RevenueCenterMaster mapToRevenueCenterMaster(RevenueCenterMasterDto revenueCenterMasterDto){
         return new RevenueCenterMaster(
                 revenueCenterMasterDto.getId(),
-                revenueCenterMasterDto.getRevenueCenterName()
+                revenueCenterMasterDto.getRevenueCenterName(),
+                revenueCenterMasterDto.getRevenueCategoryName()
         );
     }
 }

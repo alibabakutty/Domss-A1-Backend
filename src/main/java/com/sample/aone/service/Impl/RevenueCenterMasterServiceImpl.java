@@ -66,6 +66,7 @@ public class RevenueCenterMasterServiceImpl implements RevenueCenterMasterServic
                 new ResourceNotFoundException("Revenue center name not found with this name:" + revenueCenterName));
 
         revenueCenterMaster.setRevenueCenterName(updatedRevenueCenterMaster.getRevenueCenterName());
+        revenueCenterMaster.setRevenueCategoryName(updatedRevenueCenterMaster.getRevenueCategoryName());
 
         RevenueCenterMaster revenueCenterMasterObj = revenueCenterMasterDAO.save(revenueCenterMaster);
         return RevenueCenterMasterMapper.mapToRevenueCenterMasterDto(revenueCenterMasterObj);

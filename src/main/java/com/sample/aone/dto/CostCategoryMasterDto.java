@@ -7,11 +7,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class RevenueCenterMasterDto {
+public class CostCategoryMasterDto {
 
     private Long id;
 
-    private String revenueCenterName;
-
-    private String revenueCategoryName;
+    private String costCategoryName;
 }

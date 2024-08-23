@@ -9,17 +9,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "revenue_center_master")
-public class RevenueCenterMaster {
+@Table(name = "cost_center_master")
+public class CostCenterMaster {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "revenue_center_name")
-    private String revenueCenterName;
+    @Column(name = "cost_center_name")
+    private String costCenterName;
 
-    @Column(name = "revenue_category_name")
-    private String revenueCategoryName;
+    @Column(name = "cost_category_name")
+    private String costCategoryName;
 }
