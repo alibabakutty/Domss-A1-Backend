@@ -1,6 +1,5 @@
 package com.sample.aone.controller;
 
-import com.sample.aone.dto.CostCategoryMasterDto;
 import com.sample.aone.dto.CostCenterMasterDto;
 import com.sample.aone.service.CostCenterMasterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +16,9 @@ public class CostCenterMasterController {
 
     @Autowired
     private CostCenterMasterService costCenterMasterService;
+
     //Build ADD Masters REST API
-    @PostMapping("/createCostCenter")
+    @PostMapping("/addCostCenter")
     public ResponseEntity<CostCenterMasterDto> createCostCenterMaster(@RequestBody CostCenterMasterDto costCenterMasterDto){
         CostCenterMasterDto saveCostCenterMaster = costCenterMasterService.createCostCenterMaster(costCenterMasterDto);
         return new ResponseEntity<>(saveCostCenterMaster, HttpStatus.CREATED);

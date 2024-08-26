@@ -8,6 +8,6 @@ import java.util.Optional;
 
 @Repository
 public interface ProjectNameMasterDAO extends JpaRepository<ProjectNameMaster,Long> {
-    boolean existByProjectName(String projectName);
+    boolean existsByProjectName(String projectName);
     Optional<ProjectNameMaster> findByProjectName(String projectName);
 }

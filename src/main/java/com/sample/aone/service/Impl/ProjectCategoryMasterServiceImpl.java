@@ -10,6 +10,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @AllArgsConstructor
 @Service
 public class ProjectCategoryMasterServiceImpl implements ProjectCategoryMasterService {
@@ -44,5 +46,30 @@ public class ProjectCategoryMasterServiceImpl implements ProjectCategoryMasterSe
 
                 new ResourceNotFoundException("Project category name is not found with this name:" + projectCategoryName));
         return ProjectCategoryMasterMapper.mapToProjectCategoryMasterDto(projectCategoryMaster);
+    }
+
+    @Override
+    public List<ProjectCategoryMasterDto> getAllOProjectCategoryMaster(){
+        List<ProjectCategoryMaster> projectCategoryMaster = projectCategoryMasterDAO.findAll();
+        return projectCategoryMaster.stream().map(ProjectCategoryMasterMapper::mapToProjectCategoryMasterDto).toList();
+    }
+
+    @Override
+    public ProjectCategoryMasterDto updateProjectCategoryMaster(String projectCategoryName, ProjectCategoryMasterDto updateProjectCategoryMaster){
+        ProjectCategoryMaster projectCategoryMaster = projectCategoryMasterDAO.findByProjectCategoryName(projectCategoryName).orElseThrow(()->
+
+                new ResourceNotFoundException("Project category name is not found with this name:" + projectCategoryName));
+        projectCategoryMaster.setProjectCategoryName(updateProjectCategoryMaster.getProjectCategoryName());
+        ProjectCategoryMaster projectCategoryMasterObj = projectCategoryMasterDAO.save(projectCategoryMaster);
+        return ProjectCategoryMasterMapper.mapToProjectCategoryMasterDto(projectCategoryMasterObj);
+    }
+
+    @Override
+    public void deleteByProjectCategoryMasterId(Long id){
+        ProjectCategoryMaster projectCategoryMaster = projectCategoryMasterDAO.findById(id).orElseThrow(() ->
+
+                new ResourceNotFoundException("Project category name is not found with this id:" + id));
+        projectCategoryMasterDAO.deleteById(id);
+
     }
 }
