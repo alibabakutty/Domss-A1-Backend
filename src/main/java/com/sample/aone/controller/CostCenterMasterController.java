@@ -39,7 +39,7 @@ public class CostCenterMasterController {
 
     //Build UPDATE Master REST API
     @PutMapping("/alterCostCenterMaster/{costCenterName}")
-    public ResponseEntity<CostCenterMasterDto> updateCostCenterMaster(@PathVariable String costCenterName,CostCenterMasterDto updatedCostCenter){
+    public ResponseEntity<CostCenterMasterDto> updateCostCenterMaster(@PathVariable String costCenterName,@RequestBody CostCenterMasterDto updatedCostCenter){
         CostCenterMasterDto costCenterMasterDto = costCenterMasterService.updateCostCenterMaster(costCenterName,updatedCostCenter);
         return ResponseEntity.ok(costCenterMasterDto);
     }
