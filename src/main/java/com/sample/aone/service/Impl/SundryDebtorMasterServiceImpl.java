@@ -69,11 +69,15 @@ public class SundryDebtorMasterServiceImpl implements SundryDebtorMasterService 
         sundryDebtorMaster.setAddressThree(updateSundryDebtorMaster.getAddressThree());
         sundryDebtorMaster.setAddressFour(updateSundryDebtorMaster.getAddressFour());
         sundryDebtorMaster.setAddressFive(updateSundryDebtorMaster.getAddressFive());
+        sundryDebtorMaster.setLandMarkOrArea(updateSundryDebtorMaster.getLandMarkOrArea());
         sundryDebtorMaster.setState(updateSundryDebtorMaster.getState());
         sundryDebtorMaster.setCountry(updateSundryDebtorMaster.getCountry());
         sundryDebtorMaster.setPincode(updateSundryDebtorMaster.getPincode());
         sundryDebtorMaster.setPanOrItNumber(updateSundryDebtorMaster.getPanOrItNumber());
         sundryDebtorMaster.setMsmeNumber(updateSundryDebtorMaster.getMsmeNumber());
+        sundryDebtorMaster.setOpeningBalance(updateSundryDebtorMaster.getOpeningBalance());
+        sundryDebtorMaster.setDateForOpening(updateSundryDebtorMaster.getDateForOpening());
+        sundryDebtorMaster.setCreditOrDebit(updateSundryDebtorMaster.getCreditOrDebit());
 
         SundryDebtorMaster sundryDebtorMasterObj = sundryDebtorMasterDAO.save(sundryDebtorMaster);
         return SundryDebtorMasterMapper.mapToSundryDebtorMasterDto(sundryDebtorMasterObj);

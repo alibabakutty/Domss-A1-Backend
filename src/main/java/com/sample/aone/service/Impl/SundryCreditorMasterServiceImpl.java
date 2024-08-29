@@ -68,11 +68,15 @@ public class SundryCreditorMasterServiceImpl implements SundryCreditorMasterServ
         sundryCreditorMaster.setAddressThree(updateSundryCreditorMaster.getAddressThree());
         sundryCreditorMaster.setAddressFour(updateSundryCreditorMaster.getAddressFour());
         sundryCreditorMaster.setAddressFive(updateSundryCreditorMaster.getAddressFive());
+        sundryCreditorMaster.setLandMarkOrArea(updateSundryCreditorMaster.getLandMarkOrArea());
         sundryCreditorMaster.setState(updateSundryCreditorMaster.getState());
         sundryCreditorMaster.setCountry(updateSundryCreditorMaster.getCountry());
         sundryCreditorMaster.setPincode(updateSundryCreditorMaster.getPincode());
         sundryCreditorMaster.setPanOrItNumber(updateSundryCreditorMaster.getPanOrItNumber());
         sundryCreditorMaster.setMsmeNumber(updateSundryCreditorMaster.getMsmeNumber());
+        sundryCreditorMaster.setOpeningBalance(updateSundryCreditorMaster.getOpeningBalance());
+        sundryCreditorMaster.setDateForOpening(updateSundryCreditorMaster.getDateForOpening());
+        sundryCreditorMaster.setCreditOrDebit(updateSundryCreditorMaster.getCreditOrDebit());
 
         SundryCreditorMaster sundryCreditorMasterObj = sundryCreditorMasterDAO.save(sundryCreditorMaster);
         return SundryCreditorMasterMapper.mapToSundryCreditorMasterDto(sundryCreditorMasterObj);

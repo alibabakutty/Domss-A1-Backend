@@ -16,11 +16,15 @@ public class SundryDebtorMasterMapper {
                 sundryDebtorMaster.getAddressThree(),
                 sundryDebtorMaster.getAddressFour(),
                 sundryDebtorMaster.getAddressFive(),
+                sundryDebtorMaster.getLandMarkOrArea(),
                 sundryDebtorMaster.getState(),
                 sundryDebtorMaster.getCountry(),
                 sundryDebtorMaster.getPincode(),
                 sundryDebtorMaster.getPanOrItNumber(),
-                sundryDebtorMaster.getMsmeNumber()
+                sundryDebtorMaster.getMsmeNumber(),
+                sundryDebtorMaster.getOpeningBalance(),
+                sundryDebtorMaster.getDateForOpening(),
+                sundryDebtorMaster.getCreditOrDebit()
         );
     }
 
@@ -35,11 +39,15 @@ public class SundryDebtorMasterMapper {
                 sundryDebtorMasterDto.getAddressThree(),
                 sundryDebtorMasterDto.getAddressFour(),
                 sundryDebtorMasterDto.getAddressFive(),
+                sundryDebtorMasterDto.getLandMarkOrArea(),
                 sundryDebtorMasterDto.getState(),
                 sundryDebtorMasterDto.getCountry(),
                 sundryDebtorMasterDto.getPincode(),
                 sundryDebtorMasterDto.getPanOrItNumber(),
-                sundryDebtorMasterDto.getMsmeNumber()
+                sundryDebtorMasterDto.getMsmeNumber(),
+                sundryDebtorMasterDto.getOpeningBalance(),
+                sundryDebtorMasterDto.getDateForOpening(),
+                sundryDebtorMasterDto.getCreditOrDebit()
         );
     }
 }

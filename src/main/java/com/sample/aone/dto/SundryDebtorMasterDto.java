@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -27,6 +29,8 @@ public class SundryDebtorMasterDto {
 
     private String addressFive;
 
+    private String landMarkOrArea;
+
     private String state;
 
     private String country;
@@ -36,4 +40,10 @@ public class SundryDebtorMasterDto {
     private String panOrItNumber;
 
     private String msmeNumber;
+
+    private BigDecimal openingBalance;
+
+    private String dateForOpening;
+
+    private String creditOrDebit;
 }

@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -41,6 +43,9 @@ public class SundryCreditorMaster {
     @Column(name = "address_five")
     private String addressFive;
 
+    @Column(name = "land_mark_or_area")
+    private String landMarkOrArea;
+
     @Column(name = "state")
     private String state;
 
@@ -55,6 +60,15 @@ public class SundryCreditorMaster {
 
     @Column(name = "msme_number")
     private String msmeNumber;
+
+    @Column(name = "opening_balance")
+    private BigDecimal openingBalance;
+
+    @Column(name = "date_for_opening")
+    private String dateForOpening;
+
+    @Column(name = "credit_or_debit")
+    private String creditOrDebit;
 
 
 }

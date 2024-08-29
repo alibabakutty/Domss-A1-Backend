@@ -16,11 +16,15 @@ public class SundryCreditorMasterMapper {
                 sundryCreditorMaster.getAddressThree(),
                 sundryCreditorMaster.getAddressFour(),
                 sundryCreditorMaster.getAddressFive(),
+                sundryCreditorMaster.getLandMarkOrArea(),
                 sundryCreditorMaster.getState(),
                 sundryCreditorMaster.getCountry(),
                 sundryCreditorMaster.getPincode(),
                 sundryCreditorMaster.getPanOrItNumber(),
-                sundryCreditorMaster.getMsmeNumber()
+                sundryCreditorMaster.getMsmeNumber(),
+                sundryCreditorMaster.getOpeningBalance(),
+                sundryCreditorMaster.getDateForOpening(),
+                sundryCreditorMaster.getCreditOrDebit()
         );
     }
 
@@ -35,11 +39,15 @@ public class SundryCreditorMasterMapper {
                 sundryCreditorMasterDto.getAddressThree(),
                 sundryCreditorMasterDto.getAddressFour(),
                 sundryCreditorMasterDto.getAddressFive(),
+                sundryCreditorMasterDto.getLandMarkOrArea(),
                 sundryCreditorMasterDto.getState(),
                 sundryCreditorMasterDto.getCountry(),
                 sundryCreditorMasterDto.getPincode(),
                 sundryCreditorMasterDto.getPanOrItNumber(),
-                sundryCreditorMasterDto.getMsmeNumber()
+                sundryCreditorMasterDto.getMsmeNumber(),
+                sundryCreditorMasterDto.getOpeningBalance(),
+                sundryCreditorMasterDto.getDateForOpening(),
+                sundryCreditorMasterDto.getCreditOrDebit()
         );
     }
 }
