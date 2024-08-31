@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,19 +23,19 @@ public class CurrencyMasterDto {
 
     private String currencySymbol;
 
-    private Double rateForPerSalesCurrency;
+    private BigDecimal rateForPerSalesCurrency;
 
-    private Double rateForSalesInvoice;
+    private BigDecimal rateForSalesInvoice;
 
-    private Double rateForPerPurchaseCurrency;
+    private BigDecimal rateForPerPurchaseCurrency;
 
-    private Double rateForPurchaseInvoice;
+    private BigDecimal rateForPurchaseInvoice;
 
-    private Double rateForPerPaymentCurrency;
+    private BigDecimal rateForPerPaymentCurrency;
 
-    private Double rateForPaymentInvoice;
+    private BigDecimal rateForPaymentInvoice;
 
-    private Double rateForPerReceiptCurrency;
+    private BigDecimal rateForPerReceiptCurrency;
 
-    private Double rateForReceiptInvoice;
+    private BigDecimal rateForReceiptInvoice;
 }
