@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,6 +19,22 @@ public class SundryDebtorMasterDto {
     private String underGroup;
 
     private String billWiseStatus;
+
+    private String provideBankDetails;
+
+    private String accountName;
+
+    private BigInteger accountNumber;
+
+    private String bankName;
+
+    private String branchName;
+
+    private String ifscCode;
+
+    private String accountType;
+
+    private String swiftCode;
 
     private String addressOne;
 
@@ -35,15 +52,41 @@ public class SundryDebtorMasterDto {
 
     private String country;
 
-    private String pincode;
+    private Long pincode;
 
     private String panOrItNumber;
 
+    private String gstinOrUinNumber;
+
     private String msmeNumber;
 
-    private BigDecimal openingBalance;
+    private String contactPersonName;
+
+    private BigInteger mobileNumber;
+
+    private String landlineNumber;
+
+    private String emailId;
 
     private String dateForOpening;
 
+    private BigDecimal openingBalance;
+
     private String creditOrDebit;
+
+    private String forexDate;
+
+    private String referenceName;
+
+    private String dueDate;
+
+    private String forexCurrencyType;
+
+    private BigDecimal forexAmount;
+
+    private BigDecimal exchangeRate;
+
+    private BigDecimal referenceAmount;
+
+    private String referenceCreditOrDebit;
 }
