@@ -1,5 +1,6 @@
 package com.sample.aone.dto;
 
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -73,6 +74,12 @@ public class SundryCreditorMasterDto {
     private BigDecimal openingBalance;
 
     private String creditOrDebit;
+
+    private String billWiseBreakOf;
+
+    private BigDecimal uptoOpeningBalanceAmount;
+
+    private String uptoCreditOrDebit;
 
     private String forexDate;
 

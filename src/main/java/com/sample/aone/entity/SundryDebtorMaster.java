@@ -110,6 +110,15 @@ public class SundryDebtorMaster {
     @Column(name = "credit_or_debit")
     private String creditOrDebit;
 
+    @Column(name = "bill_wise_break_of")
+    private String billWiseBreakOf;
+
+    @Column(name = "upto_opening_balance_amount")
+    private BigDecimal uptoOpeningBalanceAmount;
+
+    @Column(name = "upto_credit_or_debit")
+    private String uptoCreditOrDebit;
+
     @Column(name = "forex_date")
     private String forexDate;
 
