@@ -2,14 +2,16 @@ package com.sample.aone.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Data
 @Entity
 @Table(name = "sundry_creditor_master")
@@ -32,26 +34,9 @@ public class SundryCreditorMaster {
     @Column(name = "provide_bank_details")
     private String provideBankDetails;
 
-    @Column(name = "account_name")
-    private String accountName;
-
-    @Column(name = "account_number")
-    private BigInteger accountNumber;
-
-    @Column(name = "bank_name")
-    private String bankName;
-
-    @Column(name = "branch_name")
-    private String branchName;
-
-    @Column(name = "ifsc_code")
-    private String ifscCode;
-
-    @Column(name = "account_type")
-    private String accountType;
-
-    @Column(name = "swift_code")
-    private String swiftCode;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "bank_details_id", referencedColumnName = "id")
+    private SundryCreditorBankDetails sundryCreditorBankDetails;
 
     @Column(name = "address_one")
     private String addressOne;
@@ -110,36 +95,6 @@ public class SundryCreditorMaster {
     @Column(name = "credit_or_debit")
     private String creditOrDebit;
 
-    @Column(name = "bill_wise_break_of")
-    private String billWiseBreakOf;
-
-    @Column(name = "upto_opening_balance_amount")
-    private BigDecimal uptoOpeningBalanceAmount;
-
-    @Column(name = "upto_credit_or_debit")
-    private String uptoCreditOrDebit;
-
-    @Column(name = "forex_date")
-    private String forexDate;
-
-    @Column(name = "reference_name")
-    private String referenceName;
-
-    @Column(name = "due_date")
-    private String dueDate;
-
-    @Column(name = "forex_currency_type")
-    private String forexCurrencyType;
-
-    @Column(name = "forex_amount")
-    private BigDecimal forexAmount;
-
-    @Column(name = "exchange_rate")
-    private BigDecimal exchangeRate;
-
-    @Column(name = "reference_amount")
-    private BigDecimal referenceAmount;
-
-    @Column(name = "reference_credit_or_debit")
-    private String referenceCreditOrDebit;
+    @OneToMany(mappedBy = "sundryCreditorMaster", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<SundryCreditorForexDetails> sundryCreditorForexDetails;
 }

@@ -5,97 +5,73 @@ import com.sample.aone.entity.SundryCreditorMaster;
 
 public class SundryCreditorMasterMapper {
 
-    public static SundryCreditorMasterDto mapToSundryCreditorMasterDto(SundryCreditorMaster sundryCreditorMaster){
-        return new SundryCreditorMasterDto(
-                sundryCreditorMaster.getId(),
-                sundryCreditorMaster.getSundryCreditorName(),
-                sundryCreditorMaster.getUnderGroup(),
-                sundryCreditorMaster.getBillWiseStatus(),
-                sundryCreditorMaster.getProvideBankDetails(),
-                sundryCreditorMaster.getAccountName(),
-                sundryCreditorMaster.getAccountNumber(),
-                sundryCreditorMaster.getBankName(),
-                sundryCreditorMaster.getBranchName(),
-                sundryCreditorMaster.getIfscCode(),
-                sundryCreditorMaster.getAccountType(),
-                sundryCreditorMaster.getSwiftCode(),
-                sundryCreditorMaster.getAddressOne(),
-                sundryCreditorMaster.getAddressTwo(),
-                sundryCreditorMaster.getAddressThree(),
-                sundryCreditorMaster.getAddressFour(),
-                sundryCreditorMaster.getAddressFive(),
-                sundryCreditorMaster.getLandMarkOrArea(),
-                sundryCreditorMaster.getState(),
-                sundryCreditorMaster.getCountry(),
-                sundryCreditorMaster.getPincode(),
-                sundryCreditorMaster.getPanOrItNumber(),
-                sundryCreditorMaster.getGstinOrUinNumber(),
-                sundryCreditorMaster.getMsmeNumber(),
-                sundryCreditorMaster.getContactPersonName(),
-                sundryCreditorMaster.getMobileNumber(),
-                sundryCreditorMaster.getLandlineNumber(),
-                sundryCreditorMaster.getEmailId(),
-                sundryCreditorMaster.getDateForOpening(),
-                sundryCreditorMaster.getOpeningBalance(),
-                sundryCreditorMaster.getCreditOrDebit(),
-                sundryCreditorMaster.getBillWiseBreakOf(),
-                sundryCreditorMaster.getUptoOpeningBalanceAmount(),
-                sundryCreditorMaster.getUptoCreditOrDebit(),
-                sundryCreditorMaster.getForexDate(),
-                sundryCreditorMaster.getReferenceName(),
-                sundryCreditorMaster.getDueDate(),
-                sundryCreditorMaster.getForexCurrencyType(),
-                sundryCreditorMaster.getForexAmount(),
-                sundryCreditorMaster.getExchangeRate(),
-                sundryCreditorMaster.getReferenceAmount(),
-                sundryCreditorMaster.getReferenceCreditOrDebit()
-        );
+    // Map SundryCreditorMasterDto to SundryCreditorMaster entity
+    public static SundryCreditorMaster mapToSundryCreditorMaster(SundryCreditorMasterDto dto) {
+        if (dto == null) {
+            return null;
+        }
+        return SundryCreditorMaster.builder()
+                .id(dto.getId())
+                .sundryCreditorName(dto.getSundryCreditorName())
+                .underGroup(dto.getUnderGroup())
+                .billWiseStatus(dto.getBillWiseStatus())
+                .provideBankDetails(dto.getProvideBankDetails())
+                .addressOne(dto.getAddressOne())
+                .addressTwo(dto.getAddressTwo())
+                .addressThree(dto.getAddressThree())
+                .addressFour(dto.getAddressFour())
+                .addressFive(dto.getAddressFive())
+                .landMarkOrArea(dto.getLandMarkOrArea())
+                .state(dto.getState())
+                .country(dto.getCountry())
+                .pincode(dto.getPincode())
+                .panOrItNumber(dto.getPanOrItNumber())
+                .gstinOrUinNumber(dto.getGstinOrUinNumber())
+                .msmeNumber(dto.getMsmeNumber())
+                .contactPersonName(dto.getContactPersonName())
+                .mobileNumber(dto.getMobileNumber())
+                .landlineNumber(dto.getLandlineNumber())
+                .emailId(dto.getEmailId())
+                .dateForOpening(dto.getDateForOpening())
+                .openingBalance(dto.getOpeningBalance())
+                .creditOrDebit(dto.getCreditOrDebit())
+                .sundryCreditorBankDetails(SundryCreditorBankDetailsMapper.mapToSundryCreditorBankDetails(dto.getSundryCreditorBankDetails())) // Use extracted mapper
+                .sundryCreditorForexDetails(SundryCreditorForexDetailsMapper.mapToSundryCreditorForexDetailsList(dto.getSundryCreditorForexDetails())) // Use extracted mapper
+                .build();
     }
 
-    public static SundryCreditorMaster mapToSundryCreditorMaster(SundryCreditorMasterDto sundryCreditorMasterDto){
-        return new SundryCreditorMaster(
-                sundryCreditorMasterDto.getId(),
-                sundryCreditorMasterDto.getSundryCreditorName(),
-                sundryCreditorMasterDto.getUnderGroup(),
-                sundryCreditorMasterDto.getBillWiseStatus(),
-                sundryCreditorMasterDto.getProvideBankDetails(),
-                sundryCreditorMasterDto.getAccountName(),
-                sundryCreditorMasterDto.getAccountNumber(),
-                sundryCreditorMasterDto.getBankName(),
-                sundryCreditorMasterDto.getBranchName(),
-                sundryCreditorMasterDto.getIfscCode(),
-                sundryCreditorMasterDto.getAccountType(),
-                sundryCreditorMasterDto.getSwiftCode(),
-                sundryCreditorMasterDto.getAddressOne(),
-                sundryCreditorMasterDto.getAddressTwo(),
-                sundryCreditorMasterDto.getAddressThree(),
-                sundryCreditorMasterDto.getAddressFour(),
-                sundryCreditorMasterDto.getAddressFive(),
-                sundryCreditorMasterDto.getLandMarkOrArea(),
-                sundryCreditorMasterDto.getState(),
-                sundryCreditorMasterDto.getCountry(),
-                sundryCreditorMasterDto.getPincode(),
-                sundryCreditorMasterDto.getPanOrItNumber(),
-                sundryCreditorMasterDto.getGstinOrUinNumber(),
-                sundryCreditorMasterDto.getMsmeNumber(),
-                sundryCreditorMasterDto.getContactPersonName(),
-                sundryCreditorMasterDto.getMobileNumber(),
-                sundryCreditorMasterDto.getLandlineNumber(),
-                sundryCreditorMasterDto.getEmailId(),
-                sundryCreditorMasterDto.getDateForOpening(),
-                sundryCreditorMasterDto.getOpeningBalance(),
-                sundryCreditorMasterDto.getCreditOrDebit(),
-                sundryCreditorMasterDto.getBillWiseBreakOf(),
-                sundryCreditorMasterDto.getUptoOpeningBalanceAmount(),
-                sundryCreditorMasterDto.getUptoCreditOrDebit(),
-                sundryCreditorMasterDto.getForexDate(),
-                sundryCreditorMasterDto.getReferenceName(),
-                sundryCreditorMasterDto.getDueDate(),
-                sundryCreditorMasterDto.getForexCurrencyType(),
-                sundryCreditorMasterDto.getForexAmount(),
-                sundryCreditorMasterDto.getExchangeRate(),
-                sundryCreditorMasterDto.getReferenceAmount(),
-                sundryCreditorMasterDto.getReferenceCreditOrDebit()
-        );
+    // Map SundryCreditorMaster entity to SundryCreditorMasterDto
+    public static SundryCreditorMasterDto mapToSundryCreditorMasterDto(SundryCreditorMaster entity) {
+        if (entity == null) {
+            return null;
+        }
+        return SundryCreditorMasterDto.builder()
+                .id(entity.getId())
+                .sundryCreditorName(entity.getSundryCreditorName())
+                .underGroup(entity.getUnderGroup())
+                .billWiseStatus(entity.getBillWiseStatus())
+                .provideBankDetails(entity.getProvideBankDetails())
+                .addressOne(entity.getAddressOne())
+                .addressTwo(entity.getAddressTwo())
+                .addressThree(entity.getAddressThree())
+                .addressFour(entity.getAddressFour())
+                .addressFive(entity.getAddressFive())
+                .landMarkOrArea(entity.getLandMarkOrArea())
+                .state(entity.getState())
+                .country(entity.getCountry())
+                .pincode(entity.getPincode())
+                .panOrItNumber(entity.getPanOrItNumber())
+                .gstinOrUinNumber(entity.getGstinOrUinNumber())
+                .msmeNumber(entity.getMsmeNumber())
+                .contactPersonName(entity.getContactPersonName())
+                .mobileNumber(entity.getMobileNumber())
+                .landlineNumber(entity.getLandlineNumber())
+                .emailId(entity.getEmailId())
+                .dateForOpening(entity.getDateForOpening())
+                .openingBalance(entity.getOpeningBalance())
+                .creditOrDebit(entity.getCreditOrDebit())
+                .sundryCreditorBankDetails(SundryCreditorBankDetailsMapper.mapToSundryCreditorBankDetailsDto(entity.getSundryCreditorBankDetails())) // Use extracted mapper
+                .sundryCreditorForexDetails(SundryCreditorForexDetailsMapper.mapToSundryCreditorForexDetailsDtoList(entity.getSundryCreditorForexDetails())) // Use extracted mapper
+                .build();
     }
 }

@@ -1,16 +1,17 @@
 package com.sample.aone.dto;
 
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.List;
 
+@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 public class SundryCreditorMasterDto {
 
     private Long id;
@@ -23,19 +24,7 @@ public class SundryCreditorMasterDto {
 
     private String provideBankDetails;
 
-    private String accountName;
-
-    private BigInteger accountNumber;
-
-    private String bankName;
-
-    private String branchName;
-
-    private String ifscCode;
-
-    private String accountType;
-
-    private String swiftCode;
+    private SundryCreditorBankDetailsDto sundryCreditorBankDetails;
 
     private String addressOne;
 
@@ -75,25 +64,6 @@ public class SundryCreditorMasterDto {
 
     private String creditOrDebit;
 
-    private String billWiseBreakOf;
-
-    private BigDecimal uptoOpeningBalanceAmount;
-
-    private String uptoCreditOrDebit;
-
-    private String forexDate;
-
-    private String referenceName;
-
-    private String dueDate;
-
-    private String forexCurrencyType;
-
-    private BigDecimal forexAmount;
-
-    private BigDecimal exchangeRate;
-
-    private BigDecimal referenceAmount;
-
-    private String referenceCreditOrDebit;
+    // List of forex details associated with the sundry creditor master
+    private List<SundryCreditorForexDetailsDto> sundryCreditorForexDetails;
 }

@@ -1,113 +1,168 @@
 package com.sample.aone.service.Impl;
 
+import com.sample.aone.dto.SundryCreditorForexDetailsDto;
 import com.sample.aone.dto.SundryCreditorMasterDto;
+import com.sample.aone.entity.SundryCreditorBankDetails;
+import com.sample.aone.entity.SundryCreditorForexDetails;
 import com.sample.aone.entity.SundryCreditorMaster;
 import com.sample.aone.exception.ResourceNotFoundException;
+import com.sample.aone.mapper.SundryCreditorBankDetailsMapper;
+import com.sample.aone.mapper.SundryCreditorForexDetailsMapper;
 import com.sample.aone.mapper.SundryCreditorMasterMapper;
+import com.sample.aone.repository.SundryCreditorBankDetailsDAO;
+import com.sample.aone.repository.SundryCreditorForexDetailsDAO;
 import com.sample.aone.repository.SundryCreditorMasterDAO;
 import com.sample.aone.service.SundryCreditorMasterService;
-import lombok.AllArgsConstructor;
-import org.springframework.dao.DuplicateKeyException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
-@AllArgsConstructor
 @Service
 public class SundryCreditorMasterServiceImpl implements SundryCreditorMasterService {
 
+    @Autowired
     private SundryCreditorMasterDAO sundryCreditorMasterDAO;
 
+    @Autowired
+    private SundryCreditorBankDetailsDAO sundryCreditorBankDetailsDAO;
+
+    @Autowired
+    private SundryCreditorForexDetailsDAO sundryCreditorForexDetailsDAO;
+
+    @Transactional
     @Override
-    public SundryCreditorMasterDto createSundryCreditorMaster(SundryCreditorMasterDto sundryCreditorMasterDto){
+    public SundryCreditorMasterDto createSundryCreditorMaster(SundryCreditorMasterDto sundryCreditorMasterDto) {
+        SundryCreditorMaster entity = SundryCreditorMasterMapper.mapToSundryCreditorMaster(sundryCreditorMasterDto);
 
-        // validate sundry creditor name
-        validateSundryCreditorName(sundryCreditorMasterDto);
-
-        // check duplicate entry for sundry creditor name
-        if (sundryCreditorMasterDAO.existsBySundryCreditorName(sundryCreditorMasterDto.getSundryCreditorName())){
-            throw new DuplicateKeyException("Duplicate entry for unique field:" + sundryCreditorMasterDto.getSundryCreditorName());
+        // Handle creation of bank details if present
+        if (sundryCreditorMasterDto.getSundryCreditorBankDetails() != null) {
+            SundryCreditorBankDetails bankDetails = SundryCreditorBankDetailsMapper.mapToSundryCreditorBankDetails(sundryCreditorMasterDto.getSundryCreditorBankDetails());
+            // Save the bank details
+            sundryCreditorBankDetailsDAO.save(bankDetails);
+            // Set the bank details to the main entity
+            entity.setSundryCreditorBankDetails(bankDetails);
         }
 
-        SundryCreditorMaster sundryCreditorMaster = SundryCreditorMasterMapper.mapToSundryCreditorMaster(sundryCreditorMasterDto);
-        SundryCreditorMaster saveSundryCreditorMaster = sundryCreditorMasterDAO.save(sundryCreditorMaster);
-        return SundryCreditorMasterMapper.mapToSundryCreditorMasterDto(saveSundryCreditorMaster);
-    }
-
-    public void validateSundryCreditorName(SundryCreditorMasterDto sundryCreditorMasterDto){
-        if (sundryCreditorMasterDto.getSundryCreditorName() == null || sundryCreditorMasterDto.getSundryCreditorName().isEmpty()){
-            throw new IllegalArgumentException("Sundry creditor name is unique field cannot be empty!");
+        // Handle creation of forex details if present
+        if (sundryCreditorMasterDto.getSundryCreditorForexDetails() != null) {
+            List<SundryCreditorForexDetails> forexDetailsList = sundryCreditorMasterDto.getSundryCreditorForexDetails().stream()
+                    .map(SundryCreditorForexDetailsMapper::mapToSundryCreditorForexDetails)
+                    .collect(Collectors.toList());
+            // Save all forex details
+            forexDetailsList.forEach(sundryCreditorForexDetailsDAO::save);
+            // Set the forex details to the main entity
+            entity.setSundryCreditorForexDetails(forexDetailsList);
         }
+
+        SundryCreditorMaster savedEntity = sundryCreditorMasterDAO.save(entity);
+        return SundryCreditorMasterMapper.mapToSundryCreditorMasterDto(savedEntity);
+    }
+
+    @Transactional
+    @Override
+    public SundryCreditorMasterDto updateSundryCreditorMaster(String sundryCreditorName, SundryCreditorMasterDto sundryCreditorMasterDto) {
+        Optional<SundryCreditorMaster> existingEntityOpt = sundryCreditorMasterDAO.findBySundryCreditorName(sundryCreditorName);
+        if (existingEntityOpt.isEmpty()) {
+            throw new ResourceNotFoundException("SundryCreditorMaster not found");
+        }
+
+        SundryCreditorMaster existingEntity = existingEntityOpt.get();
+
+        // Update fields
+        existingEntity.setSundryCreditorName(sundryCreditorMasterDto.getSundryCreditorName());
+        existingEntity.setUnderGroup(sundryCreditorMasterDto.getUnderGroup());
+        existingEntity.setBillWiseStatus(sundryCreditorMasterDto.getBillWiseStatus());
+        existingEntity.setProvideBankDetails(sundryCreditorMasterDto.getProvideBankDetails());
+
+        // Handle OneToOne relationship
+        if (sundryCreditorMasterDto.getSundryCreditorBankDetails() != null) {
+            SundryCreditorBankDetails updatedBankDetails = sundryCreditorBankDetailsDAO.findById(sundryCreditorMasterDto.getSundryCreditorBankDetails().getId())
+                    .orElse(new SundryCreditorBankDetails());
+
+            // Update fields of related entity
+            updatedBankDetails.setAccountNumber(sundryCreditorMasterDto.getSundryCreditorBankDetails().getAccountNumber());
+            // Set other fields as needed
+
+            // Save the updated bank details
+            sundryCreditorBankDetailsDAO.save(updatedBankDetails);
+
+            // Set updated bank details to the main entity
+            existingEntity.setSundryCreditorBankDetails(updatedBankDetails);
+        }
+
+        // Handle OneToMany relationship
+        if (sundryCreditorMasterDto.getSundryCreditorForexDetails() != null) {
+            // Remove existing forex details if not present in the DTO
+            existingEntity.getSundryCreditorForexDetails().removeIf(forexDetail ->
+                    sundryCreditorMasterDto.getSundryCreditorForexDetails().stream()
+                            .noneMatch(dto -> dto.getId().equals(forexDetail.getId()))
+            );
+
+            // Add or update forex details
+            for (SundryCreditorForexDetailsDto forexDetailDto : sundryCreditorMasterDto.getSundryCreditorForexDetails()) {
+                SundryCreditorForexDetails forexDetail = sundryCreditorForexDetailsDAO.findById(forexDetailDto.getId())
+                        .orElse(new SundryCreditorForexDetails());
+
+                // Update fields of related entity
+                forexDetail.setId(forexDetailDto.getId()); // update fields accordingly
+
+                // Save or update forex detail
+                sundryCreditorForexDetailsDAO.save(forexDetail);
+
+                // Set or update in main entity
+                if (!existingEntity.getSundryCreditorForexDetails().contains(forexDetail)) {
+                    existingEntity.getSundryCreditorForexDetails().add(forexDetail);
+                }
+            }
+        }
+
+        // Update other fields directly
+        existingEntity.setAddressOne(sundryCreditorMasterDto.getAddressOne());
+        existingEntity.setAddressTwo(sundryCreditorMasterDto.getAddressTwo());
+        existingEntity.setAddressThree(sundryCreditorMasterDto.getAddressThree());
+        existingEntity.setAddressFour(sundryCreditorMasterDto.getAddressFour());
+        existingEntity.setAddressFive(sundryCreditorMasterDto.getAddressFive());
+        existingEntity.setLandMarkOrArea(sundryCreditorMasterDto.getLandMarkOrArea());
+        existingEntity.setState(sundryCreditorMasterDto.getState());
+        existingEntity.setCountry(sundryCreditorMasterDto.getCountry());
+        existingEntity.setPincode(sundryCreditorMasterDto.getPincode());
+        existingEntity.setPanOrItNumber(sundryCreditorMasterDto.getPanOrItNumber());
+        existingEntity.setGstinOrUinNumber(sundryCreditorMasterDto.getGstinOrUinNumber());
+        existingEntity.setMsmeNumber(sundryCreditorMasterDto.getMsmeNumber());
+        existingEntity.setContactPersonName(sundryCreditorMasterDto.getContactPersonName());
+        existingEntity.setMobileNumber(sundryCreditorMasterDto.getMobileNumber());
+        existingEntity.setLandlineNumber(sundryCreditorMasterDto.getLandlineNumber());
+        existingEntity.setEmailId(sundryCreditorMasterDto.getEmailId());
+        existingEntity.setDateForOpening(sundryCreditorMasterDto.getDateForOpening());
+        existingEntity.setOpeningBalance(sundryCreditorMasterDto.getOpeningBalance());
+        existingEntity.setCreditOrDebit(sundryCreditorMasterDto.getCreditOrDebit());
+
+        // Save and return the updated entity
+        SundryCreditorMaster updatedEntity = sundryCreditorMasterDAO.save(existingEntity);
+        return SundryCreditorMasterMapper.mapToSundryCreditorMasterDto(updatedEntity);
     }
 
     @Override
-    public SundryCreditorMasterDto getSundryCreditorName(String sundryCreditorName){
-        SundryCreditorMaster sundryCreditorMaster = sundryCreditorMasterDAO.findBySundryCreditorName(sundryCreditorName).orElseThrow(() ->
-
-                new ResourceNotFoundException("Sundry creditor name is not found with this name:" + sundryCreditorName));
-        return SundryCreditorMasterMapper.mapToSundryCreditorMasterDto(sundryCreditorMaster);
+    public Optional<SundryCreditorMasterDto> getSundryCreditorMasterByName(String sundryCreditorName) {
+        return sundryCreditorMasterDAO.findBySundryCreditorName(sundryCreditorName)
+                .map(SundryCreditorMasterMapper::mapToSundryCreditorMasterDto);
     }
 
     @Override
-    public List<SundryCreditorMasterDto> getAllSundryCreditorMaster(){
-        List<SundryCreditorMaster> sundryCreditorMaster = sundryCreditorMasterDAO.findAll();
-        return sundryCreditorMaster.stream().map(SundryCreditorMasterMapper::mapToSundryCreditorMasterDto).toList();
+    public List<SundryCreditorMasterDto> getAllSundryCreditorMasters() {
+        return sundryCreditorMasterDAO.findAll().stream()
+                .map(SundryCreditorMasterMapper::mapToSundryCreditorMasterDto)
+                .collect(Collectors.toList());
     }
 
+    @Transactional
     @Override
-    public SundryCreditorMasterDto updateSundryCreditorMaster(String sundryCreditorName, SundryCreditorMasterDto updateSundryCreditorMaster){
-        SundryCreditorMaster sundryCreditorMaster = sundryCreditorMasterDAO.findBySundryCreditorName(sundryCreditorName).orElseThrow(() ->
-
-                new ResourceNotFoundException("Sundry creditor name is not found with this name:" + sundryCreditorName));
-
-        sundryCreditorMaster.setSundryCreditorName(updateSundryCreditorMaster.getSundryCreditorName());
-        sundryCreditorMaster.setUnderGroup(updateSundryCreditorMaster.getUnderGroup());
-        sundryCreditorMaster.setBillWiseStatus(updateSundryCreditorMaster.getBillWiseStatus());
-        sundryCreditorMaster.setProvideBankDetails(updateSundryCreditorMaster.getProvideBankDetails());
-        sundryCreditorMaster.setAccountName(updateSundryCreditorMaster.getAccountName());
-        sundryCreditorMaster.setAccountNumber(updateSundryCreditorMaster.getAccountNumber());
-        sundryCreditorMaster.setBankName(updateSundryCreditorMaster.getBankName());
-        sundryCreditorMaster.setBranchName(updateSundryCreditorMaster.getBranchName());
-        sundryCreditorMaster.setIfscCode(updateSundryCreditorMaster.getIfscCode());
-        sundryCreditorMaster.setAccountType(updateSundryCreditorMaster.getAccountType());
-        sundryCreditorMaster.setSwiftCode(updateSundryCreditorMaster.getSwiftCode());
-        sundryCreditorMaster.setAddressOne(updateSundryCreditorMaster.getAddressOne());
-        sundryCreditorMaster.setAddressTwo(updateSundryCreditorMaster.getAddressTwo());
-        sundryCreditorMaster.setAddressThree(updateSundryCreditorMaster.getAddressThree());
-        sundryCreditorMaster.setAddressFour(updateSundryCreditorMaster.getAddressFour());
-        sundryCreditorMaster.setAddressFive(updateSundryCreditorMaster.getAddressFive());
-        sundryCreditorMaster.setLandMarkOrArea(updateSundryCreditorMaster.getLandMarkOrArea());
-        sundryCreditorMaster.setState(updateSundryCreditorMaster.getState());
-        sundryCreditorMaster.setCountry(updateSundryCreditorMaster.getCountry());
-        sundryCreditorMaster.setPincode(updateSundryCreditorMaster.getPincode());
-        sundryCreditorMaster.setPanOrItNumber(updateSundryCreditorMaster.getPanOrItNumber());
-        sundryCreditorMaster.setGstinOrUinNumber(updateSundryCreditorMaster.getGstinOrUinNumber());
-        sundryCreditorMaster.setMsmeNumber(updateSundryCreditorMaster.getMsmeNumber());
-        sundryCreditorMaster.setContactPersonName(updateSundryCreditorMaster.getContactPersonName());
-        sundryCreditorMaster.setMobileNumber(updateSundryCreditorMaster.getMobileNumber());
-        sundryCreditorMaster.setLandlineNumber(updateSundryCreditorMaster.getLandlineNumber());
-        sundryCreditorMaster.setEmailId(updateSundryCreditorMaster.getEmailId());
-        sundryCreditorMaster.setDateForOpening(updateSundryCreditorMaster.getDateForOpening());
-        sundryCreditorMaster.setOpeningBalance(updateSundryCreditorMaster.getOpeningBalance());
-        sundryCreditorMaster.setCreditOrDebit(updateSundryCreditorMaster.getCreditOrDebit());
-        sundryCreditorMaster.setForexDate(updateSundryCreditorMaster.getForexDate());
-        sundryCreditorMaster.setReferenceName(updateSundryCreditorMaster.getReferenceName());
-        sundryCreditorMaster.setDueDate(updateSundryCreditorMaster.getDueDate());
-        sundryCreditorMaster.setForexCurrencyType(updateSundryCreditorMaster.getForexCurrencyType());
-        sundryCreditorMaster.setForexAmount(updateSundryCreditorMaster.getForexAmount());
-        sundryCreditorMaster.setExchangeRate(updateSundryCreditorMaster.getExchangeRate());
-        sundryCreditorMaster.setReferenceAmount(updateSundryCreditorMaster.getReferenceAmount());
-        sundryCreditorMaster.setReferenceCreditOrDebit(updateSundryCreditorMaster.getReferenceCreditOrDebit());
-
-        SundryCreditorMaster sundryCreditorMasterObj = sundryCreditorMasterDAO.save(sundryCreditorMaster);
-        return SundryCreditorMasterMapper.mapToSundryCreditorMasterDto(sundryCreditorMasterObj);
-    }
-
-    @Override
-    public void deleteBySundryCreditorMaster(Long id){
-        SundryCreditorMaster sundryCreditorMaster = sundryCreditorMasterDAO.findById(id).orElseThrow(() ->
-
-                new ResourceNotFoundException("Sundry creditor name is not found with this id:" + id));
-        sundryCreditorMasterDAO.deleteById(id);
+    public void deleteSundryCreditorMasterById(Long id) {
+        Optional<SundryCreditorMaster> entityOpt = sundryCreditorMasterDAO.findById(id);
+        entityOpt.ifPresent(sundryCreditorMaster -> sundryCreditorMasterDAO.delete(sundryCreditorMaster));
     }
 }

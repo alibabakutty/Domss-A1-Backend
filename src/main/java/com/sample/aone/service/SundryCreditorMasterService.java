@@ -3,15 +3,17 @@ package com.sample.aone.service;
 import com.sample.aone.dto.SundryCreditorMasterDto;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface SundryCreditorMasterService {
+
     SundryCreditorMasterDto createSundryCreditorMaster(SundryCreditorMasterDto sundryCreditorMasterDto);
 
-    SundryCreditorMasterDto getSundryCreditorName(String sundryCreditorName);
+    SundryCreditorMasterDto updateSundryCreditorMaster(String sundryCreditorName, SundryCreditorMasterDto sundryCreditorMasterDto);
 
-    List<SundryCreditorMasterDto> getAllSundryCreditorMaster();
+    Optional<SundryCreditorMasterDto> getSundryCreditorMasterByName(String sundryCreditorName);
 
-    SundryCreditorMasterDto updateSundryCreditorMaster(String sundryCreditorName, SundryCreditorMasterDto updateSundryCreditorMaster);
+    List<SundryCreditorMasterDto> getAllSundryCreditorMasters();
 
-    void deleteBySundryCreditorMaster(Long id);
+    void deleteSundryCreditorMasterById(Long id);
 }

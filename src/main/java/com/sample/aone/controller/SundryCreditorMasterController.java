@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin("http://localhost:5173")
 @RestController
@@ -24,14 +25,14 @@ public class SundryCreditorMasterController {
     }
 
     @RequestMapping("displaySundryCreditor/{sundryCreditorName}")
-    public ResponseEntity<SundryCreditorMasterDto> findDataBySundryCreditorName(@PathVariable String sundryCreditorName){
-        SundryCreditorMasterDto sundryCreditorMasterDto = sundryCreditorMasterService.getSundryCreditorName(sundryCreditorName);
+    public ResponseEntity<Optional<SundryCreditorMasterDto>> findDataBySundryCreditorName(@PathVariable String sundryCreditorName){
+        Optional<SundryCreditorMasterDto> sundryCreditorMasterDto = sundryCreditorMasterService.getSundryCreditorMasterByName(sundryCreditorName);
         return ResponseEntity.ok(sundryCreditorMasterDto);
     }
 
     @RequestMapping("/allSundryCreditors")
     public ResponseEntity<List<SundryCreditorMasterDto>> getAllSundryCreditorMaster(){
-        List<SundryCreditorMasterDto> allSundryCreditorMaster = sundryCreditorMasterService.getAllSundryCreditorMaster();
+        List<SundryCreditorMasterDto> allSundryCreditorMaster = sundryCreditorMasterService.getAllSundryCreditorMasters();
         return ResponseEntity.ok(allSundryCreditorMaster);
     }
 
@@ -43,7 +44,7 @@ public class SundryCreditorMasterController {
 
     @DeleteMapping("/deleteSundryCreditor/{id}")
     public ResponseEntity<String> deleteSundryCreditorMaster(@PathVariable Long id){
-        sundryCreditorMasterService.deleteBySundryCreditorMaster(id);
+        sundryCreditorMasterService.deleteSundryCreditorMasterById(id);
         return ResponseEntity.ok("Sundry creditor master deleted successfully!");
     }
 }
