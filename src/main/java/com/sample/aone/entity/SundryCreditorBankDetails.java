@@ -1,5 +1,6 @@
 package com.sample.aone.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -41,6 +42,7 @@ public class SundryCreditorBankDetails {
     @Column(name = "swift_code")
     private String swiftCode;
 
-    @OneToOne(mappedBy = "sundryCreditorBankDetails")
-    private SundryCreditorMaster sundryCreditorMaster;
+
+
+
 }

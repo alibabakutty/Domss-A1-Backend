@@ -1,22 +1,21 @@
-package com.sample.aone.entity;
+package com.sample.aone;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.sample.aone.entity.SundryCreditorForexDetails;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@Data
 @Entity
-@Table(name = "sundry_creditor_master")
-public class SundryCreditorMaster {
+public class Sundry {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,9 +34,9 @@ public class SundryCreditorMaster {
     @Column(name = "provide_bank_details")
     private String provideBankDetails;
 
-    @OneToOne( cascade = CascadeType.ALL)
-    @JoinColumn(name = "creditor_id", referencedColumnName = "id")
-    private SundryCreditorBankDetails sundryCreditorBankDetails;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "creditor_id", referencedColumnName = "id")
+//    private SundryCreditorBankDetails sundryCreditorBankDetails;
 
     @Column(name = "address_one")
     private String addressOne;
@@ -96,7 +95,7 @@ public class SundryCreditorMaster {
     @Column(name = "credit_or_debit")
     private String creditOrDebit;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "creditor_id")
-    private List<SundryCreditorForexDetails> sundryCreditorForexDetails;
+    private List<Forex> forexes = new ArrayList<>();
 }

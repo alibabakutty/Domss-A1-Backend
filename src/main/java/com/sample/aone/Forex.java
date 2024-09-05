@@ -1,20 +1,18 @@
-package com.sample.aone.entity;
+package com.sample.aone;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "sundry_creditor_forex_details")
-public class SundryCreditorForexDetails {
+public class Forex {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,6 +60,4 @@ public class SundryCreditorForexDetails {
 
     @Column(name = "total_amount_credit_or_debit")
     private String totalAmountCreditOrDebit;
-
-
 }
