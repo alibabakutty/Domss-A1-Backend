@@ -1,6 +1,7 @@
 package com.sample.aone.controller;
 
 import com.sample.aone.dto.SundryDebtorMasterDto;
+import com.sample.aone.entity.SundryDebtorMaster;
 import com.sample.aone.service.SundryDebtorMasterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,32 +19,8 @@ public class SundryDebtorMasterController {
     private SundryDebtorMasterService sundryDebtorMasterService;
 
     @PostMapping("/addSundryDebtor")
-    public ResponseEntity<SundryDebtorMasterDto> createSundryDebtorMaster(@RequestBody SundryDebtorMasterDto sundryDebtorMasterDto){
-        SundryDebtorMasterDto saveSundryDebtorMaster = sundryDebtorMasterService.createSundryDebtorMaster(sundryDebtorMasterDto);
+    public ResponseEntity<SundryDebtorMaster> createSundryDebtorMaster(@RequestBody SundryDebtorMaster sundryDebtorMaster){
+        SundryDebtorMaster saveSundryDebtorMaster = sundryDebtorMasterService.createSundryDebtorMaster(sundryDebtorMaster);
         return new ResponseEntity<>(saveSundryDebtorMaster, HttpStatus.CREATED);
-    }
-
-    @RequestMapping("/displaySundryDebtor/{sundryDebtorName}")
-    public ResponseEntity<SundryDebtorMasterDto> getDataBySundryDebtorName(@PathVariable String sundryDebtorName){
-        SundryDebtorMasterDto sundryDebtorMasterDto = sundryDebtorMasterService.getSundryDebtorName(sundryDebtorName);
-        return ResponseEntity.ok(sundryDebtorMasterDto);
-    }
-
-    @RequestMapping("/allSundryDebtors")
-    public ResponseEntity<List<SundryDebtorMasterDto>> getAllSundryDebtorMaster(){
-        List<SundryDebtorMasterDto> allSundryDebtors = sundryDebtorMasterService.getAllSundryDebtorMaster();
-        return ResponseEntity.ok(allSundryDebtors);
-    }
-
-    @PutMapping("/alterSundryDebtorMaster/{sundryDebtorName}")
-    public ResponseEntity<SundryDebtorMasterDto> updateSundryDebtorMaster(@PathVariable String sundryDebtorName, @RequestBody SundryDebtorMasterDto updateSundryDebtorMaster){
-        SundryDebtorMasterDto sundryDebtorMasterDto = sundryDebtorMasterService.updateSundryDebtorMaster(sundryDebtorName,updateSundryDebtorMaster);
-        return ResponseEntity.ok(sundryDebtorMasterDto);
-    }
-
-    @DeleteMapping("/deleteSundryDebtor/{id}")
-    public ResponseEntity<String> deleteSundryDebtorMaster(@PathVariable Long id){
-        sundryDebtorMasterService.deleteBySundryDebtorMaster(id);
-        return ResponseEntity.ok("Sundry debtor master deleted successfully!");
     }
 }
