@@ -14,12 +14,6 @@ public class SundryDebtorForexDetailsDto {
 
     private Long id;
 
-    private String billWiseBreakOf;
-
-    private BigDecimal uptoOpeningBalanceAmount;
-
-    private String uptoCreditOrDebit;
-
     private String forexDate;
 
     private String referenceName;
@@ -35,12 +29,6 @@ public class SundryDebtorForexDetailsDto {
     private BigDecimal referenceAmount;
 
     private String referenceCreditOrDebit;
-
-    private BigDecimal totalForexAmount;
-
-    private BigDecimal totalAmount;
-
-    private String totalAmountCreditOrDebit;
 
     // The master to which these forex details belong (only ID required to avoid circular references)
     private Long sundryDebtorMasterId;

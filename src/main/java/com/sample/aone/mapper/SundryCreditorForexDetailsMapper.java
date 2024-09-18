@@ -16,9 +16,6 @@ public class SundryCreditorForexDetailsMapper {
         }
         return SundryCreditorForexDetails.builder()
                 .id(dto.getId())
-                .billWiseBreakOf(dto.getBillWiseBreakOf())
-                .uptoOpeningBalanceAmount(dto.getUptoOpeningBalanceAmount())
-                .uptoCreditOrDebit(dto.getUptoCreditOrDebit())
                 .forexDate(LocalDate.parse(dto.getForexDate()))
                 .referenceName(dto.getReferenceName())
                 .dueDate(LocalDate.parse(dto.getDueDate()))
@@ -27,9 +24,6 @@ public class SundryCreditorForexDetailsMapper {
                 .exchangeRate(dto.getExchangeRate())
                 .referenceAmount(dto.getReferenceAmount())
                 .referenceCreditOrDebit(dto.getReferenceCreditOrDebit())
-                .totalForexAmount(dto.getTotalForexAmount())
-                .totalAmount(dto.getTotalAmount())
-                .totalAmountCreditOrDebit(dto.getTotalAmountCreditOrDebit())
                 .build();
     }
 
@@ -40,9 +34,6 @@ public class SundryCreditorForexDetailsMapper {
         }
         return SundryCreditorForexDetailsDto.builder()
                 .id(entity.getId())
-                .billWiseBreakOf(entity.getBillWiseBreakOf())
-                .uptoOpeningBalanceAmount(entity.getUptoOpeningBalanceAmount())
-                .uptoCreditOrDebit(entity.getUptoCreditOrDebit())
                 .forexDate(String.valueOf(entity.getForexDate()))
                 .referenceName(entity.getReferenceName())
                 .dueDate(String.valueOf(entity.getDueDate()))
@@ -51,9 +42,6 @@ public class SundryCreditorForexDetailsMapper {
                 .exchangeRate(entity.getExchangeRate())
                 .referenceAmount(entity.getReferenceAmount())
                 .referenceCreditOrDebit(entity.getReferenceCreditOrDebit())
-                .totalForexAmount(entity.getTotalForexAmount())
-                .totalAmount(entity.getTotalAmount())
-                .totalAmountCreditOrDebit(entity.getTotalAmountCreditOrDebit())
                 .build();
     }
 

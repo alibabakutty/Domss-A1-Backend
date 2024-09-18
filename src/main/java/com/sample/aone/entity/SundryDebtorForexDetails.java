@@ -21,15 +21,6 @@ public class SundryDebtorForexDetails {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "bill_wise_break_of")
-    private String billWiseBreakOf;
-
-    @Column(name = "upto_opening_balance_amount")
-    private BigDecimal uptoOpeningBalanceAmount;
-
-    @Column(name = "upto_credit_or_debit")
-    private String uptoCreditOrDebit;
-
     @Column(name = "forex_date")
     private LocalDate forexDate;
 
@@ -53,13 +44,4 @@ public class SundryDebtorForexDetails {
 
     @Column(name = "reference_credit_or_debit")
     private String referenceCreditOrDebit;
-
-    @Column(name = "total_forex_amount")
-    private BigDecimal totalForexAmount;
-
-    @Column(name = "total_amount")
-    private BigDecimal totalAmount;
-
-    @Column(name = "total_amount_credit_or_debit")
-    private String totalAmountCreditOrDebit;
 }

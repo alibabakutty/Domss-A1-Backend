@@ -11,9 +11,6 @@ public class SundryDebtorForexDetailsMapper {
     public static SundryDebtorForexDetails mapToSundryDebtorForexDetails(SundryDebtorForexDetailsDto sundryDebtorForexDetailsDto){
         return SundryDebtorForexDetails.builder()
                 .id(sundryDebtorForexDetailsDto.getId())
-                .billWiseBreakOf(sundryDebtorForexDetailsDto.getBillWiseBreakOf())
-                .uptoOpeningBalanceAmount(sundryDebtorForexDetailsDto.getUptoOpeningBalanceAmount())
-                .uptoCreditOrDebit(sundryDebtorForexDetailsDto.getUptoCreditOrDebit())
                 .forexDate(LocalDate.parse(sundryDebtorForexDetailsDto.getForexDate()))
                 .referenceName(sundryDebtorForexDetailsDto.getReferenceName())
                 .dueDate(LocalDate.parse(sundryDebtorForexDetailsDto.getDueDate()))
@@ -22,18 +19,12 @@ public class SundryDebtorForexDetailsMapper {
                 .exchangeRate(sundryDebtorForexDetailsDto.getExchangeRate())
                 .referenceAmount(sundryDebtorForexDetailsDto.getReferenceAmount())
                 .referenceCreditOrDebit(sundryDebtorForexDetailsDto.getReferenceCreditOrDebit())
-                .totalForexAmount(sundryDebtorForexDetailsDto.getTotalForexAmount())
-                .totalAmount(sundryDebtorForexDetailsDto.getTotalAmount())
-                .totalAmountCreditOrDebit(sundryDebtorForexDetailsDto.getTotalAmountCreditOrDebit())
                 .build();
     }
 
     public static SundryDebtorForexDetailsDto mapToSundryDebtorForexDetailsDto(SundryDebtorForexDetails sundryDebtorForexDetails){
         return SundryDebtorForexDetailsDto.builder()
                 .id(sundryDebtorForexDetails.getId())
-                .billWiseBreakOf(sundryDebtorForexDetails.getBillWiseBreakOf())
-                .uptoOpeningBalanceAmount(sundryDebtorForexDetails.getUptoOpeningBalanceAmount())
-                .uptoCreditOrDebit(sundryDebtorForexDetails.getUptoCreditOrDebit())
                 .forexDate(String.valueOf(sundryDebtorForexDetails.getForexDate()))
                 .referenceName(sundryDebtorForexDetails.getReferenceName())
                 .dueDate(String.valueOf(sundryDebtorForexDetails.getDueDate()))
@@ -42,9 +33,6 @@ public class SundryDebtorForexDetailsMapper {
                 .exchangeRate(sundryDebtorForexDetails.getExchangeRate())
                 .referenceAmount(sundryDebtorForexDetails.getReferenceAmount())
                 .referenceCreditOrDebit(sundryDebtorForexDetails.getReferenceCreditOrDebit())
-                .totalForexAmount(sundryDebtorForexDetails.getTotalForexAmount())
-                .totalAmount(sundryDebtorForexDetails.getTotalAmount())
-                .totalAmountCreditOrDebit(sundryDebtorForexDetails.getTotalAmountCreditOrDebit())
                 .build();
     }
 
