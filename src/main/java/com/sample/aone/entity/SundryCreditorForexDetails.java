@@ -39,8 +39,11 @@ public class SundryCreditorForexDetails {
     @Column(name = "exchange_rate")
     private BigDecimal exchangeRate;
 
-    @Column(name = "reference_amount")
-    private BigDecimal referenceAmount;
+    @Column(name = "outward_reference_amount")
+    private BigDecimal outwardReferenceAmount;
+
+    @Column(name = "inward_reference_amount")
+    private BigDecimal inwardReferenceAmount;
 
     @Column(name = "reference_credit_or_debit")
     private String referenceCreditOrDebit;

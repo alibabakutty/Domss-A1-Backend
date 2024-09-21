@@ -22,7 +22,8 @@ public class SundryCreditorForexDetailsMapper {
                 .forexCurrencyType(dto.getForexCurrencyType())
                 .forexAmount(dto.getForexAmount())
                 .exchangeRate(dto.getExchangeRate())
-                .referenceAmount(dto.getReferenceAmount())
+                .outwardReferenceAmount(dto.getOutwardReferenceAmount())
+                .inwardReferenceAmount(dto.getInwardReferenceAmount())
                 .referenceCreditOrDebit(dto.getReferenceCreditOrDebit())
                 .build();
     }
@@ -40,7 +41,8 @@ public class SundryCreditorForexDetailsMapper {
                 .forexCurrencyType(entity.getForexCurrencyType())
                 .forexAmount(entity.getForexAmount())
                 .exchangeRate(entity.getExchangeRate())
-                .referenceAmount(entity.getReferenceAmount())
+                .outwardReferenceAmount(entity.getOutwardReferenceAmount())
+                .inwardReferenceAmount(entity.getInwardReferenceAmount())
                 .referenceCreditOrDebit(entity.getReferenceCreditOrDebit())
                 .build();
     }

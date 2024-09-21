@@ -24,4 +24,28 @@ public class SundryCreditorMasterController {
         SundryCreditorMaster saveSundryCreditorMaster = sundryCreditorMasterService.createSundryCreditorMaster(sundryCreditorMaster);
         return new ResponseEntity<>(saveSundryCreditorMaster, HttpStatus.CREATED);
     }
+
+    @RequestMapping("/displaySundryCreditor/{sundryCreditorName}")
+    public ResponseEntity<SundryCreditorMaster> getSundryCreditorByName(@PathVariable String sundryCreditorName){
+        Optional<SundryCreditorMaster> sundryCreditor = sundryCreditorMasterService.getSundryCreditorName(sundryCreditorName);
+        return sundryCreditor.map(ResponseEntity::ok).orElseGet(()-> ResponseEntity.notFound().build());
+    }
+
+    @RequestMapping("/allSundryCreditors")
+    public ResponseEntity<List<SundryCreditorMaster>> getAllSundryCreditors(){
+        List<SundryCreditorMaster> sundryCreditors = sundryCreditorMasterService.getAllSundryCreditors();
+        return new ResponseEntity<>(sundryCreditors, HttpStatus.OK);
+    }
+
+    @PutMapping("/alterSundryCreditorMaster/{sundryCreditorName}")
+    public ResponseEntity<SundryCreditorMaster> updateSundryCreditor(@PathVariable String sundryCreditorName, @RequestBody SundryCreditorMaster updateSundryCreditorMaster){
+        SundryCreditorMaster updateCreditor = sundryCreditorMasterService.updateSundryCreditorMaster(sundryCreditorName, updateSundryCreditorMaster);
+        return ResponseEntity.ok(updateCreditor);
+    }
+
+    @DeleteMapping("deleteSundryCreditorMaster/{id}")
+    public ResponseEntity<Void> deleteSundryCreditorMaster(@PathVariable Long id){
+        sundryCreditorMasterService.deleteSundryCreditorMaster(id);
+        return ResponseEntity.noContent().build();
+    }
 }
