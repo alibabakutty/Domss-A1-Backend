@@ -26,7 +26,9 @@ public class SundryDebtorForexDetailsDto {
 
     private BigDecimal exchangeRate;
 
-    private BigDecimal referenceAmount;
+    private BigDecimal outwardReferenceAmount;
+
+    private BigDecimal inwardReferenceAmount;
 
     private String referenceCreditOrDebit;
 

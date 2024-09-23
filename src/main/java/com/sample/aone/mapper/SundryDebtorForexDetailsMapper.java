@@ -17,7 +17,8 @@ public class SundryDebtorForexDetailsMapper {
                 .forexCurrencyType(sundryDebtorForexDetailsDto.getForexCurrencyType())
                 .forexAmount(sundryDebtorForexDetailsDto.getForexAmount())
                 .exchangeRate(sundryDebtorForexDetailsDto.getExchangeRate())
-                .referenceAmount(sundryDebtorForexDetailsDto.getReferenceAmount())
+                .outwardReferenceAmount(sundryDebtorForexDetailsDto.getOutwardReferenceAmount())
+                .inwardReferenceAmount(sundryDebtorForexDetailsDto.getInwardReferenceAmount())
                 .referenceCreditOrDebit(sundryDebtorForexDetailsDto.getReferenceCreditOrDebit())
                 .build();
     }
@@ -31,7 +32,8 @@ public class SundryDebtorForexDetailsMapper {
                 .forexCurrencyType(sundryDebtorForexDetails.getForexCurrencyType())
                 .forexAmount(sundryDebtorForexDetails.getForexAmount())
                 .exchangeRate(sundryDebtorForexDetails.getExchangeRate())
-                .referenceAmount(sundryDebtorForexDetails.getReferenceAmount())
+                .outwardReferenceAmount(sundryDebtorForexDetails.getOutwardReferenceAmount())
+                .inwardReferenceAmount(sundryDebtorForexDetails.getInwardReferenceAmount())
                 .referenceCreditOrDebit(sundryDebtorForexDetails.getReferenceCreditOrDebit())
                 .build();
     }

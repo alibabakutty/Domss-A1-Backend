@@ -44,6 +44,7 @@ public class SundryDebtorMasterServiceImpl implements SundryDebtorMasterService{
         // Update fields as necessary
         existingSundryDebtor.setSundryDebtorName(updateSundryDebtorMaster.getSundryDebtorName());
         existingSundryDebtor.setUnderGroup(updateSundryDebtorMaster.getUnderGroup());
+        existingSundryDebtor.setForexApplicable(updateSundryDebtorMaster.getForexApplicable());
         existingSundryDebtor.setBillWiseStatus(updateSundryDebtorMaster.getBillWiseStatus());
         existingSundryDebtor.setProvideBankDetails(updateSundryDebtorMaster.getProvideBankDetails());
 

@@ -46,6 +46,7 @@ public class SundryCreditorMasterServiceImpl implements SundryCreditorMasterServ
         // Update fields as necessary
         existingSundryCreditor.setSundryCreditorName(updateSundryCreditorMaster.getSundryCreditorName());
         existingSundryCreditor.setUnderGroup(updateSundryCreditorMaster.getUnderGroup());
+        existingSundryCreditor.setForexApplicable(updateSundryCreditorMaster.getForexApplicable());
         existingSundryCreditor.setBillWiseStatus(updateSundryCreditorMaster.getBillWiseStatus());
         existingSundryCreditor.setProvideBankDetails(updateSundryCreditorMaster.getProvideBankDetails());
 

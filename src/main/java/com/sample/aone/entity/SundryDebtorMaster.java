@@ -28,6 +28,9 @@ public class SundryDebtorMaster {
     @Column(name = "under_group")
     private String underGroup;
 
+    @Column(name = "forex_applicable")
+    private String forexApplicable;
+
     @Column(name = "bill_wise_status")
     private String billWiseStatus;
 

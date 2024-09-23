@@ -20,6 +20,8 @@ public class SundryDebtorMasterDto {
 
     private String underGroup;
 
+    private String forexApplicable;
+
     private String billWiseStatus;
 
     private String provideBankDetails;
