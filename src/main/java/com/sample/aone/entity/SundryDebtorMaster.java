@@ -37,7 +37,7 @@ public class SundryDebtorMaster {
     @Column(name = "provide_bank_details")
     private String provideBankDetails;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "debtor_id", referencedColumnName = "id")
     private SundryDebtorBankDetails sundryDebtorBankDetails;
 

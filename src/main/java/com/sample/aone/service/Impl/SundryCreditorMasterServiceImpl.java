@@ -7,6 +7,7 @@ import com.sample.aone.repository.SundryCreditorMasterDAO;
 import com.sample.aone.service.SundryCreditorMasterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -39,18 +40,20 @@ public class SundryCreditorMasterServiceImpl implements SundryCreditorMasterServ
 
     // Alter or update a SundryCreditorMaster
     @Override
-    public SundryCreditorMaster updateSundryCreditorMaster(String sundryCreditorName, SundryCreditorMaster updateSundryCreditorMaster){
-        SundryCreditorMaster existingSundryCreditor = sundryCreditorMasterDAO.findBySundryCreditorName(sundryCreditorName).orElseThrow(()->
-                new ResourceNotFoundException("Sundry Creditor not found with this name:" + sundryCreditorName));
+    @Transactional
+    public SundryCreditorMaster updateSundryCreditorMaster(String sundryCreditorName, SundryCreditorMaster updateSundryCreditorMaster) {
+        // Fetch existing Sundry Creditor by name, or throw an exception if not found
+        SundryCreditorMaster existingSundryCreditor = sundryCreditorMasterDAO.findBySundryCreditorName(sundryCreditorName)
+                .orElseThrow(() -> new ResourceNotFoundException("Sundry Creditor not found with this name: " + sundryCreditorName));
 
-        // Update fields as necessary
+        // Update the basic fields
         existingSundryCreditor.setSundryCreditorName(updateSundryCreditorMaster.getSundryCreditorName());
         existingSundryCreditor.setUnderGroup(updateSundryCreditorMaster.getUnderGroup());
         existingSundryCreditor.setForexApplicable(updateSundryCreditorMaster.getForexApplicable());
         existingSundryCreditor.setBillWiseStatus(updateSundryCreditorMaster.getBillWiseStatus());
         existingSundryCreditor.setProvideBankDetails(updateSundryCreditorMaster.getProvideBankDetails());
 
-        // Update bank details
+        // Update bank details only if present
         if (updateSundryCreditorMaster.getSundryCreditorBankDetails() != null) {
             existingSundryCreditor.setSundryCreditorBankDetails(updateSundryCreditorMaster.getSundryCreditorBankDetails());
         }
@@ -73,18 +76,21 @@ public class SundryCreditorMasterServiceImpl implements SundryCreditorMasterServ
         existingSundryCreditor.setLandlineNumber(updateSundryCreditorMaster.getLandlineNumber());
         existingSundryCreditor.setEmailId(updateSundryCreditorMaster.getEmailId());
 
-        // Update forex sub-form details
+        // Update forex sub-form details if present
         if (updateSundryCreditorMaster.getSundryCreditorForexDetails() != null) {
-            existingSundryCreditor.setSundryCreditorForexDetails(updateSundryCreditorMaster.getSundryCreditorForexDetails());
+            existingSundryCreditor.getSundryCreditorForexDetails().clear(); // Clear existing forex details
+            existingSundryCreditor.getSundryCreditorForexDetails().addAll(updateSundryCreditorMaster.getSundryCreditorForexDetails());
         }
+
         // Update financial details
         existingSundryCreditor.setDateForOpening(updateSundryCreditorMaster.getDateForOpening());
         existingSundryCreditor.setOpeningBalance(updateSundryCreditorMaster.getOpeningBalance());
         existingSundryCreditor.setCreditOrDebit(updateSundryCreditorMaster.getCreditOrDebit());
 
-        // Save the updated entity
+        // Save the updated entity to the database
         return sundryCreditorMasterDAO.save(existingSundryCreditor);
     }
+
 
     // Delete a SundryCreditorMaster by id
     @Override

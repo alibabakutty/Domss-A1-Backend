@@ -6,6 +6,7 @@ import com.sample.aone.repository.SundryDebtorMasterDAO;
 import com.sample.aone.service.SundryDebtorMasterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,18 +38,20 @@ public class SundryDebtorMasterServiceImpl implements SundryDebtorMasterService{
 
     // Alter or update a SundryDebtorMaster
     @Override
-    public SundryDebtorMaster updateSundryDebtorMaster(String sundryDebtorName, SundryDebtorMaster updateSundryDebtorMaster){
-        SundryDebtorMaster existingSundryDebtor = sundryDebtorMasterDAO.findBySundryDebtorName(sundryDebtorName).orElseThrow(()->
-                new ResourceNotFoundException("Sundry debtor not found with this name:" + sundryDebtorName));
+    @Transactional
+    public SundryDebtorMaster updateSundryDebtorMaster(String sundryDebtorName, SundryDebtorMaster updateSundryDebtorMaster) {
+        // Fetch existing Sundry Debtor details by name, throw exception if not found
+        SundryDebtorMaster existingSundryDebtor = sundryDebtorMasterDAO.findBySundryDebtorName(sundryDebtorName)
+                .orElseThrow(() -> new ResourceNotFoundException("Sundry debtor not found with this name: " + sundryDebtorName));
 
-        // Update fields as necessary
+        // Update basic fields
         existingSundryDebtor.setSundryDebtorName(updateSundryDebtorMaster.getSundryDebtorName());
         existingSundryDebtor.setUnderGroup(updateSundryDebtorMaster.getUnderGroup());
         existingSundryDebtor.setForexApplicable(updateSundryDebtorMaster.getForexApplicable());
         existingSundryDebtor.setBillWiseStatus(updateSundryDebtorMaster.getBillWiseStatus());
         existingSundryDebtor.setProvideBankDetails(updateSundryDebtorMaster.getProvideBankDetails());
 
-        // Update bank details
+        // Update bank details only if the update contains them
         if (updateSundryDebtorMaster.getSundryDebtorBankDetails() != null) {
             existingSundryDebtor.setSundryDebtorBankDetails(updateSundryDebtorMaster.getSundryDebtorBankDetails());
         }
@@ -71,9 +74,10 @@ public class SundryDebtorMasterServiceImpl implements SundryDebtorMasterService{
         existingSundryDebtor.setLandlineNumber(updateSundryDebtorMaster.getLandlineNumber());
         existingSundryDebtor.setEmailId(updateSundryDebtorMaster.getEmailId());
 
-        // Update forex sub-form details
+        // Update forex sub-form details if present
         if (updateSundryDebtorMaster.getSundryDebtorForexDetails() != null) {
-            existingSundryDebtor.setSundryDebtorForexDetails(updateSundryDebtorMaster.getSundryDebtorForexDetails());
+            existingSundryDebtor.getSundryDebtorForexDetails().clear(); // Clear the existing forex details if needed
+            existingSundryDebtor.getSundryDebtorForexDetails().addAll(updateSundryDebtorMaster.getSundryDebtorForexDetails());
         }
 
         // Update financial details
@@ -81,9 +85,10 @@ public class SundryDebtorMasterServiceImpl implements SundryDebtorMasterService{
         existingSundryDebtor.setOpeningBalance(updateSundryDebtorMaster.getOpeningBalance());
         existingSundryDebtor.setCreditOrDebit(updateSundryDebtorMaster.getCreditOrDebit());
 
-        // Save the updated entity
+        // Save the updated entity to the database
         return sundryDebtorMasterDAO.save(existingSundryDebtor);
     }
+
 
     // Delete a SundryDebtorMaster by id
     @Override

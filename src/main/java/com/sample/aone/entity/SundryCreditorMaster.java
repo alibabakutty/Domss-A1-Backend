@@ -38,7 +38,7 @@ public class SundryCreditorMaster {
     @Column(name = "provide_bank_details")
     private String provideBankDetails;
 
-    @OneToOne( cascade = CascadeType.ALL)
+    @OneToOne( cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "creditor_id", referencedColumnName = "id")
     private SundryCreditorBankDetails sundryCreditorBankDetails;
 
