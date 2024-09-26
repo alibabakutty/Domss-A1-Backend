@@ -33,6 +33,9 @@ public class SundryDebtorForexDetails {
     @Column(name = "forex_currency_type")
     private String forexCurrencyType;
 
+    @Column(name = "forex_currency_symbol")
+    private String forexCurrencySymbol;
+
     @Column(name = "forex_amount")
     private BigDecimal forexAmount;
 

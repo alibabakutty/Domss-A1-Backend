@@ -98,6 +98,15 @@ public class SundryDebtorMaster {
     @Column(name = "credit_or_debit")
     private String creditOrDebit;
 
+    @Column(name = "total_forex_amount")
+    private BigDecimal totalForexAmount;
+
+    @Column(name = "total_inward_reference_amount")
+    private BigDecimal totalInwardReferenceAmount;
+
+    @Column(name = "total_outward_reference_amount")
+    private BigDecimal totalOutwardReferenceAmount;
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "debtor_id")
     private List<SundryDebtorForexDetails> sundryDebtorForexDetails;

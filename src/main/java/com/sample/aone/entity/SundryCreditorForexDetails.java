@@ -33,6 +33,9 @@ public class SundryCreditorForexDetails {
     @Column(name = "forex_currency_type")
     private String forexCurrencyType;
 
+    @Column(name = "forex_currency_symbol")
+    private String forexCurrencySymbol;
+
     @Column(name = "forex_amount")
     private BigDecimal forexAmount;
 
@@ -47,6 +50,4 @@ public class SundryCreditorForexDetails {
 
     @Column(name = "reference_credit_or_debit")
     private String referenceCreditOrDebit;
-
-
 }

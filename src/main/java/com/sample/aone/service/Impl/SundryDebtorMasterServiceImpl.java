@@ -84,6 +84,9 @@ public class SundryDebtorMasterServiceImpl implements SundryDebtorMasterService{
         existingSundryDebtor.setDateForOpening(updateSundryDebtorMaster.getDateForOpening());
         existingSundryDebtor.setOpeningBalance(updateSundryDebtorMaster.getOpeningBalance());
         existingSundryDebtor.setCreditOrDebit(updateSundryDebtorMaster.getCreditOrDebit());
+        existingSundryDebtor.setTotalForexAmount(updateSundryDebtorMaster.getTotalForexAmount());
+        existingSundryDebtor.setTotalInwardReferenceAmount(updateSundryDebtorMaster.getTotalInwardReferenceAmount());
+        existingSundryDebtor.setTotalOutwardReferenceAmount(updateSundryDebtorMaster.getTotalOutwardReferenceAmount());
 
         // Save the updated entity to the database
         return sundryDebtorMasterDAO.save(existingSundryDebtor);

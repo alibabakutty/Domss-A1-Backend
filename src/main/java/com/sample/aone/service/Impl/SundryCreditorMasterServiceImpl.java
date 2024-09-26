@@ -86,6 +86,9 @@ public class SundryCreditorMasterServiceImpl implements SundryCreditorMasterServ
         existingSundryCreditor.setDateForOpening(updateSundryCreditorMaster.getDateForOpening());
         existingSundryCreditor.setOpeningBalance(updateSundryCreditorMaster.getOpeningBalance());
         existingSundryCreditor.setCreditOrDebit(updateSundryCreditorMaster.getCreditOrDebit());
+        existingSundryCreditor.setTotalForexAmount(updateSundryCreditorMaster.getTotalForexAmount());
+        existingSundryCreditor.setTotalInwardReferenceAmount(updateSundryCreditorMaster.getTotalInwardReferenceAmount());
+        existingSundryCreditor.setTotalOutwardReferenceAmount(updateSundryCreditorMaster.getTotalOutwardReferenceAmount());
 
         // Save the updated entity to the database
         return sundryCreditorMasterDAO.save(existingSundryCreditor);
