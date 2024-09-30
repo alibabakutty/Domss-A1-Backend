@@ -39,6 +39,9 @@ public class SundryDebtorForexDetails {
     @Column(name = "forex_amount")
     private BigDecimal forexAmount;
 
+    @Column(name = "forex_credit_or_debit")
+    private String forexCreditOrDebit;
+
     @Column(name = "exchange_rate")
     private BigDecimal exchangeRate;
 
