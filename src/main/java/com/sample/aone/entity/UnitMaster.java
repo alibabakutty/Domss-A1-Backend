@@ -20,8 +20,8 @@ public class UnitMaster {
     @Column(name = "unit_type_name")
     private String unitTypeName;
 
-    @Column(name = "unit_symbol")
-    private String unitSymbol;
+    @Column(name = "unit_symbol_name")
+    private String unitSymbolName;
 
     @Column(name = "formal_name")
     private String formalName;

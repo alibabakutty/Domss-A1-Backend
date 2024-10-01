@@ -9,7 +9,7 @@ public class UnitMasterMapper {
         return new UnitMasterDto(
                 unitMaster.getId(),
                 unitMaster.getUnitTypeName(),
-                unitMaster.getUnitSymbol(),
+                unitMaster.getUnitSymbolName(),
                 unitMaster.getFormalName(),
                 unitMaster.getUnitQuantityCode(),
                 unitMaster.getNumberOfDecimalPlaces()
@@ -20,7 +20,7 @@ public class UnitMasterMapper {
         return new UnitMaster(
                 unitMasterDto.getId(),
                 unitMasterDto.getUnitTypeName(),
-                unitMasterDto.getUnitSymbol(),
+                unitMasterDto.getUnitSymbolName(),
                 unitMasterDto.getFormalName(),
                 unitMasterDto.getUnitQuantityCode(),
                 unitMasterDto.getNumberOfDecimalPlaces()

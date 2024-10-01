@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -22,6 +24,9 @@ public class StockItemMaster {
 
     @Column(name = "under")
     private String under;
+
+    @Column(name = "category")
+    private String category;
 
     @Column(name = "units")
     private String units;
@@ -49,4 +54,16 @@ public class StockItemMaster {
 
     @Column(name = "rate_of_duty")
     private String rateOfDuty;
+
+    @Column(name = "opening_balance_quantity")
+    private BigDecimal openingBalanceQuantity;
+
+    @Column(name = "opening_balance_rate")
+    private BigDecimal openingBalanceRate;
+
+    @Column(name = "opening_balance_unit")
+    private String openingBalanceUnit;
+
+    @Column(name = "opening_balance_value")
+    private BigDecimal openingBalanceValue;
 }

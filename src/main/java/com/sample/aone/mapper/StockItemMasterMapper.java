@@ -10,6 +10,7 @@ public class StockItemMasterMapper {
                 stockItemMaster.getId(),
                 stockItemMaster.getStockItemName(),
                 stockItemMaster.getUnder(),
+                stockItemMaster.getCategory(),
                 stockItemMaster.getUnits(),
                 stockItemMaster.getGstApplicability(),
                 stockItemMaster.getHsnOrSacDetails(),
@@ -18,7 +19,11 @@ public class StockItemMasterMapper {
                 stockItemMaster.getDescription(),
                 stockItemMaster.getTypeOfSupply(),
                 stockItemMaster.getIsInclusiveOfDutiesAndTaxes(),
-                stockItemMaster.getRateOfDuty()
+                stockItemMaster.getRateOfDuty(),
+                stockItemMaster.getOpeningBalanceQuantity(),
+                stockItemMaster.getOpeningBalanceRate(),
+                stockItemMaster.getOpeningBalanceUnit(),
+                stockItemMaster.getOpeningBalanceValue()
         );
     }
 
@@ -27,6 +32,7 @@ public class StockItemMasterMapper {
                 stockItemMasterDto.getId(),
                 stockItemMasterDto.getStockItemName(),
                 stockItemMasterDto.getUnder(),
+                stockItemMasterDto.getCategory(),
                 stockItemMasterDto.getUnits(),
                 stockItemMasterDto.getGstApplicability(),
                 stockItemMasterDto.getHsnOrSacDetails(),
@@ -35,7 +41,11 @@ public class StockItemMasterMapper {
                 stockItemMasterDto.getDescription(),
                 stockItemMasterDto.getTypeOfSupply(),
                 stockItemMasterDto.getIsInclusiveOfDutiesAndTaxes(),
-                stockItemMasterDto.getRateOfDuty()
+                stockItemMasterDto.getRateOfDuty(),
+                stockItemMasterDto.getOpeningBalanceQuantity(),
+                stockItemMasterDto.getOpeningBalanceRate(),
+                stockItemMasterDto.getOpeningBalanceUnit(),
+                stockItemMasterDto.getOpeningBalanceValue()
         );
     }
 }

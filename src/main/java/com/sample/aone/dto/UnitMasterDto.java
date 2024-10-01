@@ -13,7 +13,7 @@ public class UnitMasterDto {
 
     private String unitTypeName;
 
-    private String unitSymbol;
+    private String unitSymbolName;
 
     private String formalName;
 
