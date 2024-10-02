@@ -31,30 +31,6 @@ public class StockItemMaster {
     @Column(name = "units")
     private String units;
 
-    @Column(name = "gst_applicability")
-    private String gstApplicability;
-
-    @Column(name = "hsn_or_sac_details")
-    private String hsnOrSacDetails;
-
-    @Column(name = "source_of_details")
-    private String sourceOfDetails;
-
-    @Column(name = "hsn_or_sac")
-    private String hsnOrSac;
-
-    @Column(name = "description")
-    private String description;
-
-    @Column(name = "type_of_supply")
-    private String typeOfSupply;
-
-    @Column(name = "is_inclusive_of_duties_and_taxes")
-    private String isInclusiveOfDutiesAndTaxes;
-
-    @Column(name = "rate_of_duty")
-    private String rateOfDuty;
-
     @Column(name = "opening_balance_quantity")
     private BigDecimal openingBalanceQuantity;
 

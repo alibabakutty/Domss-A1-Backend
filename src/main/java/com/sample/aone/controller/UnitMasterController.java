@@ -26,8 +26,8 @@ public class UnitMasterController {
     }
 
     //Build GET Master Ids REST API
-    @RequestMapping("displayUnitMaster/{unitSymbolName}")
-    public ResponseEntity<UnitMasterDto> getDataByUnitMaster(@PathVariable String unitSymbolName, @RequestBody UnitMasterDto updateUnitMaster){
+    @RequestMapping("displayUnit/{unitSymbolName}")
+    public ResponseEntity<UnitMasterDto> getDataByUnitMaster(@PathVariable String unitSymbolName){
         UnitMasterDto unitMasterDto = unitMasterService.getUnitMaster(unitSymbolName);
         return ResponseEntity.ok(unitMasterDto);
     }

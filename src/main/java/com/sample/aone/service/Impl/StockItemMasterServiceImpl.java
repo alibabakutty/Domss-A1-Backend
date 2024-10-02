@@ -66,14 +66,6 @@ public class StockItemMasterServiceImpl implements StockItemMasterService {
         stockItemMaster.setUnder(updateStockItemMaster.getUnder());
         stockItemMaster.setCategory(updateStockItemMaster.getCategory());
         stockItemMaster.setUnits(updateStockItemMaster.getUnits());
-        stockItemMaster.setGstApplicability(updateStockItemMaster.getGstApplicability());
-        stockItemMaster.setHsnOrSacDetails(updateStockItemMaster.getHsnOrSacDetails());
-        stockItemMaster.setSourceOfDetails(updateStockItemMaster.getSourceOfDetails());
-        stockItemMaster.setHsnOrSac(updateStockItemMaster.getHsnOrSac());
-        stockItemMaster.setDescription(updateStockItemMaster.getDescription());
-        stockItemMaster.setTypeOfSupply(updateStockItemMaster.getTypeOfSupply());
-        stockItemMaster.setIsInclusiveOfDutiesAndTaxes(updateStockItemMaster.getIsInclusiveOfDutiesAndTaxes());
-        stockItemMaster.setRateOfDuty(updateStockItemMaster.getRateOfDuty());
         stockItemMaster.setOpeningBalanceQuantity(updateStockItemMaster.getOpeningBalanceQuantity());
         stockItemMaster.setOpeningBalanceRate(updateStockItemMaster.getOpeningBalanceRate());
         stockItemMaster.setOpeningBalanceUnit(updateStockItemMaster.getOpeningBalanceUnit());

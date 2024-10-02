@@ -21,22 +21,6 @@ public class StockItemMasterDto {
 
     private String units;
 
-    private String gstApplicability;
-
-    private String hsnOrSacDetails;
-
-    private String sourceOfDetails;
-
-    private String hsnOrSac;
-
-    private String description;
-
-    private String typeOfSupply;
-
-    private String isInclusiveOfDutiesAndTaxes;
-
-    private String rateOfDuty;
-
     private BigDecimal openingBalanceQuantity;
 
     private BigDecimal openingBalanceRate;
