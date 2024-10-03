@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,6 +20,9 @@ public class StockItemMaster {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "stock_item_code")
+    private String stockItemCode;
+
     @Column(name = "stock_item_name")
     private String stockItemName;
 
@@ -30,6 +34,20 @@ public class StockItemMaster {
 
     @Column(name = "units")
     private String units;
+
+    @Column(name = "standard_selling_price")
+    private String standardSellingPrice;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "selling_price_id")
+    private List<StandardSellingPriceSubForm> standardSellingPriceSubForm;
+
+    @Column(name = "standard_selling_cost")
+    private String standardSellingCost;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "selling_cost_id")
+    private List<StandardSellingCostSubForm> standardSellingCostSubForm;
 
     @Column(name = "opening_balance_quantity")
     private BigDecimal openingBalanceQuantity;

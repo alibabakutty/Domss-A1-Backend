@@ -1,6 +1,6 @@
 package com.sample.aone.controller;
 
-import com.sample.aone.dto.StockItemMasterDto;
+import com.sample.aone.entity.StockItemMaster;
 import com.sample.aone.service.StockItemMasterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin("http://localhost:5173")
 @RestController
@@ -20,36 +21,37 @@ public class StockItemMasterController {
 
     //Build ADD Masters REST API
     @PostMapping("/addStockItem")
-    public ResponseEntity<StockItemMasterDto> createStockItemMaster(@RequestBody StockItemMasterDto stockItemMasterDto){
-        StockItemMasterDto saveStockItemMaster = stockItemMasterService.createStockItemMaster(stockItemMasterDto);
-        return new ResponseEntity<>(saveStockItemMaster, HttpStatus.CREATED);
+    public ResponseEntity<StockItemMaster> createStockItemMaster(@RequestBody StockItemMaster stockItemMaster){
+        StockItemMaster saveStockItemMaster = stockItemMasterService.createStockItemMaster(stockItemMaster);
+        return new ResponseEntity<>(stockItemMaster, HttpStatus.CREATED);
     }
 
     //Build GET Master Ids REST API
-    @RequestMapping("displayStockItem/{stockItemName}")
-    public ResponseEntity<StockItemMasterDto> getDataByStockItemName(@PathVariable String stockItemName){
-        StockItemMasterDto stockItemMasterDto = stockItemMasterService.getStockItemMaster(stockItemName);
-        return ResponseEntity.ok(stockItemMasterDto);
+    @RequestMapping("/displayStockItem/{stockItemName}")
+    public ResponseEntity<StockItemMaster> getStockItemName(@PathVariable String stockItemName){
+        Optional<StockItemMaster> stockItemMaster = stockItemMasterService.getStockItemName(stockItemName);
+        return stockItemMaster.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     //Build GET All Master Ids REST API
     @RequestMapping("/allStockItems")
-    public ResponseEntity<List<StockItemMasterDto>> getAllStockItemMasters(){
-        List<StockItemMasterDto> allStockItemMasters = stockItemMasterService.getAllStockItemMasters();
-        return ResponseEntity.ok(allStockItemMasters);
+    public ResponseEntity<List<StockItemMaster>> getAllStockItemMaster(){
+        List<StockItemMaster> stockItemMasters = stockItemMasterService.getAllStockItemMasters();
+        return new ResponseEntity<>(stockItemMasters, HttpStatus.OK);
     }
 
     //Build UPDATE Master REST API
     @PutMapping("/alterStockItemMaster/{stockItemName}")
-    public ResponseEntity<StockItemMasterDto> updateStockItemMaster(@PathVariable String stockItemName, @RequestBody StockItemMasterDto updateStockItemMaster){
-        StockItemMasterDto stockItemMasterDto = stockItemMasterService.updateStockItemMaster(stockItemName, updateStockItemMaster);
-        return ResponseEntity.ok(stockItemMasterDto);
+    public ResponseEntity<StockItemMaster> updateStockItemMaster(@PathVariable String stockItemName, @RequestBody StockItemMaster updateStockItem){
+        StockItemMaster updateItem = stockItemMasterService.updateStockItemMaster(stockItemName,updateStockItem);
+        return ResponseEntity.ok(updateItem);
     }
 
     //Build DELETE Ledger REST API
     @DeleteMapping("deleteStockItemMaster/{id}")
-    public ResponseEntity<String> deleteStockItemMaster(@PathVariable Long id){
-        stockItemMasterService.deleteStockItemMasterById(id);
-        return ResponseEntity.ok("Stock Item Master deleted successfully!");
+    public ResponseEntity<Void> deleteStockItemMaster(@PathVariable Long id){
+        stockItemMasterService.deleteStockItemMaster(id);
+        return ResponseEntity.noContent().build();
     }
+
 }

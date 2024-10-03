@@ -1,17 +1,25 @@
 package com.sample.aone.service;
 
 import com.sample.aone.dto.StockItemMasterDto;
+import com.sample.aone.entity.StockItemMaster;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface StockItemMasterService {
-    StockItemMasterDto createStockItemMaster(StockItemMasterDto stockItemMasterDto);
 
-    StockItemMasterDto getStockItemMaster(String stockItemName);
+    // create stock item master
+    StockItemMaster createStockItemMaster(StockItemMaster stockItemMaster);
 
-    List<StockItemMasterDto> getAllStockItemMasters();
+    // Display or get a StockItemMaster by name
+    Optional<StockItemMaster> getStockItemName(String stockItemName);
 
-    StockItemMasterDto updateStockItemMaster(String stockItemName, StockItemMasterDto updateStockItemMaster);
+    // Method to get all StockItemMasters
+    List<StockItemMaster> getAllStockItemMasters();
 
-    void deleteStockItemMasterById(Long id);
+    // Alter or update a StockItemMaster
+    StockItemMaster updateStockItemMaster(String stockItemName, StockItemMaster updateStockItemMaster);
+
+    // Delete a StockItemMaster by id
+    void deleteStockItemMaster(Long id);
 }
