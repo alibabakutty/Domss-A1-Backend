@@ -55,7 +55,7 @@ public class StockItemMasterServiceImpl implements StockItemMasterService {
         existingStockItem.setUnits(updateStockItemMaster.getUnits());
         existingStockItem.setStandardSellingPrice(updateStockItemMaster.getStandardSellingPrice());
 
-        // Update forex sub-form details if present
+        // Update selling-price sub-form details if present
         if (updateStockItemMaster.getStandardSellingPriceSubForm() != null){
             existingStockItem.getStandardSellingPriceSubForm().clear();   // Clear existing forex details
             existingStockItem.getStandardSellingPriceSubForm().addAll(updateStockItemMaster.getStandardSellingPriceSubForm());
@@ -63,10 +63,16 @@ public class StockItemMasterServiceImpl implements StockItemMasterService {
 
         existingStockItem.setStandardSellingCost(updateStockItemMaster.getStandardSellingCost());
 
-        // Update forex sub-form details if present
+        // Update selling-cost sub-form details if present
         if (updateStockItemMaster.getStandardSellingCostSubForm() != null){
             existingStockItem.getStandardSellingCostSubForm().clear();  // Clear existing forex details
             existingStockItem.getStandardSellingCostSubForm().addAll(updateStockItemMaster.getStandardSellingCostSubForm());
+        }
+
+        // Update godown sub-form details if present
+        if (updateStockItemMaster.getGodownSubForm() != null){
+            existingStockItem.getGodownSubForm().clear();    // Clear existing forex details
+            existingStockItem.getGodownSubForm().addAll(updateStockItemMaster.getGodownSubForm());
         }
 
         updateStockItemMaster.setOpeningBalanceQuantity(updateStockItemMaster.getOpeningBalanceQuantity());
