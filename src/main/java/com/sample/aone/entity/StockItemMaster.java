@@ -52,6 +52,10 @@ public class StockItemMaster {
     @Column(name = "opening_balance_quantity")
     private BigDecimal openingBalanceQuantity;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "godown_id")
+    private List<GodownSubForm> godownSubForm;
+
     @Column(name = "opening_balance_rate")
     private BigDecimal openingBalanceRate;
 
