@@ -79,6 +79,8 @@ public class StockItemMasterServiceImpl implements StockItemMasterService {
         updateStockItemMaster.setOpeningBalanceRate(updateStockItemMaster.getOpeningBalanceRate());
         updateStockItemMaster.setOpeningBalanceUnit(updateStockItemMaster.getOpeningBalanceUnit());
         updateStockItemMaster.setOpeningBalanceValue(updateStockItemMaster.getOpeningBalanceValue());
+        updateStockItemMaster.setTotalQuantity(updateStockItemMaster.getTotalQuantity());
+        updateStockItemMaster.setTotalNetAmount(updateStockItemMaster.getTotalNetAmount());
 
         // Save the updated entity to the database
         return stockItemMasterDAO.save(existingStockItem);

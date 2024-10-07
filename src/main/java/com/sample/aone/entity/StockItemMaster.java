@@ -64,4 +64,10 @@ public class StockItemMaster {
 
     @Column(name = "opening_balance_value")
     private BigDecimal openingBalanceValue;
+
+    @Column(name = "totalQuantity")
+    private Integer totalQuantity;
+
+    @Column(name = "total_net_amount")
+    private BigDecimal totalNetAmount;
 }
