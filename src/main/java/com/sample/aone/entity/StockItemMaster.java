@@ -50,7 +50,7 @@ public class StockItemMaster {
     private List<StandardSellingCostSubForm> standardSellingCostSubForm;
 
     @Column(name = "opening_balance_quantity")
-    private BigDecimal openingBalanceQuantity;
+    private Integer openingBalanceQuantity;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "godown_id")

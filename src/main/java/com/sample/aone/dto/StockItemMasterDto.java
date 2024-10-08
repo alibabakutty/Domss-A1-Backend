@@ -21,7 +21,7 @@ public class StockItemMasterDto {
 
     private String units;
 
-    private BigDecimal openingBalanceQuantity;
+    private Integer openingBalanceQuantity;
 
     private BigDecimal openingBalanceRate;
 
