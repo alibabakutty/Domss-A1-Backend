@@ -43,6 +43,7 @@ public class StockItemMasterServiceImpl implements StockItemMasterService {
     @Override
     public StockItemMaster updateStockItemMaster(String stockItemName, StockItemMaster updateStockItemMaster){
         // Fetch existing StockItem by name, or throw an exception if not found
+
         StockItemMaster existingStockItem = stockItemMasterDAO.findByStockItemName(stockItemName).orElseThrow(() ->
 
                 new ResourceNotFoundException("Stock item name is not found with this name:" + stockItemName));
@@ -74,15 +75,16 @@ public class StockItemMasterServiceImpl implements StockItemMasterService {
             existingStockItem.getGodownSubForm().clear();    // Clear existing forex details
             existingStockItem.getGodownSubForm().addAll(updateStockItemMaster.getGodownSubForm());
         }
-
-        updateStockItemMaster.setOpeningBalanceQuantity(updateStockItemMaster.getOpeningBalanceQuantity());
-        updateStockItemMaster.setOpeningBalanceRate(updateStockItemMaster.getOpeningBalanceRate());
-        updateStockItemMaster.setOpeningBalanceUnit(updateStockItemMaster.getOpeningBalanceUnit());
-        updateStockItemMaster.setOpeningBalanceValue(updateStockItemMaster.getOpeningBalanceValue());
-        updateStockItemMaster.setTotalQuantity(updateStockItemMaster.getTotalQuantity());
-        updateStockItemMaster.setTotalNetAmount(updateStockItemMaster.getTotalNetAmount());
+//        System.out.println(updateStockItemMaster.getOpeningBalanceRate());
+        existingStockItem.setOpeningBalanceQuantity(updateStockItemMaster.getOpeningBalanceQuantity());
+        existingStockItem.setOpeningBalanceRate(updateStockItemMaster.getOpeningBalanceRate());
+        existingStockItem.setOpeningBalanceUnit(updateStockItemMaster.getOpeningBalanceUnit());
+        existingStockItem.setOpeningBalanceValue(updateStockItemMaster.getOpeningBalanceValue());
+        existingStockItem.setTotalQuantity(updateStockItemMaster.getTotalQuantity());
+        existingStockItem.setTotalNetAmount(updateStockItemMaster.getTotalNetAmount());
 
         // Save the updated entity to the database
+//        System.out.println(existingStockItem);
         return stockItemMasterDAO.save(existingStockItem);
     }
 
