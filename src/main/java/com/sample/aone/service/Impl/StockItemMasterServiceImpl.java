@@ -75,6 +75,19 @@ public class StockItemMasterServiceImpl implements StockItemMasterService {
             existingStockItem.getGodownSubForm().clear();    // Clear existing forex details
             existingStockItem.getGodownSubForm().addAll(updateStockItemMaster.getGodownSubForm());
         }
+
+        // Update gst sub-form details if present
+        if (updateStockItemMaster.getGstStockItemSubForm() != null){
+            existingStockItem.getGstStockItemSubForm().clear();
+            existingStockItem.getGstStockItemSubForm().addAll(updateStockItemMaster.getGstStockItemSubForm());
+        }
+
+        // Update vat sub-form details if present
+        if (updateStockItemMaster.getVatStockItemSubForm() != null){
+            existingStockItem.getVatStockItemSubForm().clear();
+            existingStockItem.getVatStockItemSubForm().addAll(updateStockItemMaster.getVatStockItemSubForm());
+        }
+
 //        System.out.println(updateStockItemMaster.getOpeningBalanceRate());
         existingStockItem.setOpeningBalanceQuantity(updateStockItemMaster.getOpeningBalanceQuantity());
         existingStockItem.setOpeningBalanceRate(updateStockItemMaster.getOpeningBalanceRate());

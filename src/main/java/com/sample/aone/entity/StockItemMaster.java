@@ -49,6 +49,14 @@ public class StockItemMaster {
     @JoinColumn(name = "selling_cost_id")
     private List<StandardSellingCostSubForm> standardSellingCostSubForm;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "gst_id")
+    private List<GstStockItemSubForm> gstStockItemSubForm;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "vat_id")
+    private List<VatStockItemSubForm> vatStockItemSubForm;
+
     @Column(name = "opening_balance_quantity")
     private Integer openingBalanceQuantity;
 
