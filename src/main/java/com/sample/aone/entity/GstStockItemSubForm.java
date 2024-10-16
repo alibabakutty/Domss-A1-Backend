@@ -22,7 +22,7 @@ public class GstStockItemSubForm {
     private LocalDate gstDate;
 
     @Column(name = "hsn_code")
-    private String hsnCode;
+    private Integer hsnCode;
 
     @Column(name = "gst_percentage")
     private Float gstPercentage;

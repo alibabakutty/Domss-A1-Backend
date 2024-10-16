@@ -22,7 +22,7 @@ public class VatStockItemSubForm {
     private LocalDate vatDate;
 
     @Column(name = "vat_code")
-    private String vatCode;
+    private Integer vatCode;
 
     @Column(name = "vat_percentage")
     private Float vatPercentage;

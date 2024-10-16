@@ -70,11 +70,7 @@ public class StockItemMasterServiceImpl implements StockItemMasterService {
             existingStockItem.getStandardSellingCostSubForm().addAll(updateStockItemMaster.getStandardSellingCostSubForm());
         }
 
-        // Update godown sub-form details if present
-        if (updateStockItemMaster.getGodownSubForm() != null){
-            existingStockItem.getGodownSubForm().clear();    // Clear existing forex details
-            existingStockItem.getGodownSubForm().addAll(updateStockItemMaster.getGodownSubForm());
-        }
+        existingStockItem.setGstApplicable(updateStockItemMaster.getGstApplicable());
 
         // Update gst sub-form details if present
         if (updateStockItemMaster.getGstStockItemSubForm() != null){
@@ -82,10 +78,18 @@ public class StockItemMasterServiceImpl implements StockItemMasterService {
             existingStockItem.getGstStockItemSubForm().addAll(updateStockItemMaster.getGstStockItemSubForm());
         }
 
+        existingStockItem.setVatApplicable(updateStockItemMaster.getVatApplicable());
+
         // Update vat sub-form details if present
         if (updateStockItemMaster.getVatStockItemSubForm() != null){
             existingStockItem.getVatStockItemSubForm().clear();
             existingStockItem.getVatStockItemSubForm().addAll(updateStockItemMaster.getVatStockItemSubForm());
+        }
+
+        // Update godown sub-form details if present
+        if (updateStockItemMaster.getGodownSubForm() != null){
+            existingStockItem.getGodownSubForm().clear();    // Clear existing forex details
+            existingStockItem.getGodownSubForm().addAll(updateStockItemMaster.getGodownSubForm());
         }
 
 //        System.out.println(updateStockItemMaster.getOpeningBalanceRate());
