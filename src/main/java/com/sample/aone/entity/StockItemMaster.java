@@ -26,6 +26,9 @@ public class StockItemMaster {
     @Column(name = "stock_item_name")
     private String stockItemName;
 
+    @Column(name = "stock_item_printing_name")
+    private String stockItemPrintingName;
+
     @Column(name = "under")
     private String under;
 
@@ -49,6 +52,9 @@ public class StockItemMaster {
     @JoinColumn(name = "selling_cost_id")
     private List<StandardSellingCostSubForm> standardSellingCostSubForm;
 
+    @Column(name = "stock_item_mrp")
+    private BigDecimal stockItemMrp;
+
     @Column(name = "gst_applicable")
     private String gstApplicable;
 
@@ -62,6 +68,12 @@ public class StockItemMaster {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "vat_id")
     private List<VatStockItemSubForm> vatStockItemSubForm;
+
+    @Column(name = "batch_applicable")
+    private String batchApplicable;
+
+    @Column(name = "stock_item_accounting_ledger")
+    private String stockItemAccountingLedger;
 
     @Column(name = "opening_balance_quantity")
     private Integer openingBalanceQuantity;

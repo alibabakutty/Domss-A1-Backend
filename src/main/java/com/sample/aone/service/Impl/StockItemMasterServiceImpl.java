@@ -51,6 +51,7 @@ public class StockItemMasterServiceImpl implements StockItemMasterService {
         // Update the basic fields
         existingStockItem.setStockItemCode(updateStockItemMaster.getStockItemCode());
         existingStockItem.setStockItemName(updateStockItemMaster.getStockItemName());
+        existingStockItem.setStockItemPrintingName(updateStockItemMaster.getStockItemPrintingName());
         existingStockItem.setUnder(updateStockItemMaster.getUnder());
         existingStockItem.setCategory(updateStockItemMaster.getCategory());
         existingStockItem.setUnits(updateStockItemMaster.getUnits());
@@ -70,6 +71,7 @@ public class StockItemMasterServiceImpl implements StockItemMasterService {
             existingStockItem.getStandardSellingCostSubForm().addAll(updateStockItemMaster.getStandardSellingCostSubForm());
         }
 
+        existingStockItem.setStockItemMrp(updateStockItemMaster.getStockItemMrp());
         existingStockItem.setGstApplicable(updateStockItemMaster.getGstApplicable());
 
         // Update gst sub-form details if present
@@ -93,6 +95,8 @@ public class StockItemMasterServiceImpl implements StockItemMasterService {
         }
 
 //        System.out.println(updateStockItemMaster.getOpeningBalanceRate());
+        existingStockItem.setBatchApplicable(updateStockItemMaster.getBatchApplicable());
+        existingStockItem.setStockItemAccountingLedger(updateStockItemMaster.getStockItemAccountingLedger());
         existingStockItem.setOpeningBalanceQuantity(updateStockItemMaster.getOpeningBalanceQuantity());
         existingStockItem.setOpeningBalanceRate(updateStockItemMaster.getOpeningBalanceRate());
         existingStockItem.setOpeningBalanceUnit(updateStockItemMaster.getOpeningBalanceUnit());
