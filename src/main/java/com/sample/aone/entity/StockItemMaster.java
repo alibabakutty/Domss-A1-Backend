@@ -75,6 +75,10 @@ public class StockItemMaster {
     @Column(name = "stock_item_accounting_ledger")
     private String stockItemAccountingLedger;
 
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "accounting_ledger_id", referencedColumnName = "id")
+    private AccountingLedgerSubForm accountingLedgerSubForm;
+
     @Column(name = "opening_balance_quantity")
     private Integer openingBalanceQuantity;
 

@@ -88,6 +88,11 @@ public class StockItemMasterServiceImpl implements StockItemMasterService {
             existingStockItem.getVatStockItemSubForm().addAll(updateStockItemMaster.getVatStockItemSubForm());
         }
 
+        // Update accounting ledger details only if present
+        if (updateStockItemMaster.getAccountingLedgerSubForm() != null){
+            existingStockItem.setAccountingLedgerSubForm(updateStockItemMaster.getAccountingLedgerSubForm());
+        }
+
         // Update godown sub-form details if present
         if (updateStockItemMaster.getGodownSubForm() != null){
             existingStockItem.getGodownSubForm().clear();    // Clear existing forex details
